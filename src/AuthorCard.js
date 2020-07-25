@@ -29,13 +29,11 @@ class AuthorCard extends React.Component {
           </div>
         </div>
         <div style={styles.booksContainer}>
-          {Books.map((book, i) => {
-                return (
-                  <div>
-                    <Book book={book} />
-                  </div>
-                )
-              })}
+          {Books.map((book, i) => (
+            <div>
+              <Book book={book} />
+            </div>
+          ))}
         </div>
       </div>
     )
