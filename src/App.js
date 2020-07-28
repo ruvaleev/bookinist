@@ -1,13 +1,13 @@
 import React from 'react';
 
-import AuthorCard from './AuthorCard';
+import BookCard from './BookCard';
 
 class App extends React.Component {
   render() {
     return (
-      <div>
-        <AuthorCard author={this.props.author} />
-      </div>
+      <>
+        <BookCard book={this.props.book} />
+      </>
     );
   };
 }

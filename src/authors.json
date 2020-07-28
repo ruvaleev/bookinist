@@ -1,0 +1,30 @@
+[
+  { 
+    "id": 1,
+    "name": "Михаил Шолохов",
+    "email": "sholohov@gmail.com",
+    "avatar": "https://im0-tub-ru.yandex.net/i?id=4e0667541c65ae35d268f00b6ffe82d6&n=13",
+    "shortInformation": "Михаи́л Алекса́ндрович Шо́лохов (11 [24] мая 1905, хутор Кружилинский, станица Вёшенская, Донецкий округ, область Войска Донского, Российская Империя"
+  },
+  {
+    "id": 2,
+    "name": "Василий Шукшин",
+    "email": "shukhin@gmail.com",
+    "avatar": "http://i.mycdn.me/i?r=AzEPZsRbOZEKgBhR0XGMT1RkIdjfx6GlZfo8ZipsBmvMR6aKTM5SRkZCeTgDn6uOyic",
+    "shortInformation": "Советский кинорежиссёр, актёр, сценарист и писатель. Заслуженный деятель искусств РСФСР"
+  },
+  {
+    "id": 3,
+    "name": "Джордж Мартин",
+    "email": "martin@gmail.com",
+    "avatar": "https://biografieonline.it/img/bio/George_R._R._Martin_3.jpg",
+    "shortInformation": "Современный американский писатель-фантаст, сценарист, продюсер и редактор, лауреат многих литературных премий"
+  },
+  {
+    "id": 4,
+    "name": "Квентин Тарантино",
+    "email": "tarantino@gmail.com",
+    "avatar": "https://avatars.mds.yandex.net/get-zen_doc/1893760/pub_5dd422a921cd6d24351d540f_5dd42b51a29ee0330b84d47d/scale_1200",
+    "shortInformation": "Американский кинорежиссёр, сценарист, актёр, кинопродюсер и кинооператор. Один из наиболее ярких представителей постмодернизма в кинематографе"
+  }
+]
