@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Button from './Button';
-import AuthorList from './AuthorList';
+import Authors from './Authors';
 
 class Book extends React.Component {
   constructor(props) {
@@ -42,20 +42,7 @@ class Book extends React.Component {
       book: { title, shortDescription, pageCount, language, progress, cover, minimumPrice, desiredPrice,
         collectedAmount, expectedAmount, raiting, authors } 
     } = this.props;
-    const buttonTitle = this.state.isSubscribed ? 'Отписаться' : 'Подписаться';
     const modalBody = this.state.isSubscribed ? 'Вы уверены, что хотите отписаться?' : 'Переведете нам больше денег - книга выйдет быстрее!'
-    const subscriptionButton = { 
-      buttonOnClick: this.toggleSubscription,
-      title: buttonTitle
-    };
-    const openModalButton = { 
-      buttonOnClick: this.openModal,
-      title: buttonTitle
-    };
-    const closeModalButton = { 
-      buttonOnClick: this.closeModal,
-      title: 'Закрыть'
-    };
     const currentRaiting = this.state.raiting;
     const popularBadge = this.state.isPopular ? '(Популярная книга)' : '';
 
@@ -78,17 +65,17 @@ class Book extends React.Component {
             <div>Уже собрано: ${collectedAmount}</div>
             <div>Ожидается собрать: ${expectedAmount}</div>
             <div>Рейтинг: {currentRaiting} {popularBadge}</div>
-            {<Button button={openModalButton}/>}
+            {<Button buttonOnClick={this.openModal} title={this.state.isSubscribed ? 'Отписаться' : 'Подписаться'}/>}
           </div>
         </div>
         <>
-          <AuthorList authors={authors}/>
+          <Authors authors={authors}/>
         </>
         <div id='modalContainer' data-testid='modalContainer' style={styles.modalContainer}>
           <div style={styles.modalBody}>
             {modalBody}
-            {<Button button={subscriptionButton}/>}
-            {<Button button={closeModalButton}/>}
+            {<Button buttonOnClick={this.toggleSubscription} title={this.state.isSubscribed ? 'Отписаться' : 'Подписаться'}/>}
+            {<Button buttonOnClick={this.closeModal} title='Закрыть'/>}
           </div>
         </div>
       </div>

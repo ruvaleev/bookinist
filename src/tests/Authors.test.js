@@ -2,11 +2,11 @@ import React from 'react';
 import { render, fireEvent, queryByText, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
-import AuthorList from '../AuthorList';
+import Authors from '../Authors';
 import authors from '../authors.json';
 
 test("can scroll authors list after button click", () => {
-  const { getByText, queryByText } = render(<AuthorList authors={authors} />);
+  const { getByText, queryByText } = render(<Authors authors={authors} />);
   const leftClick = { button: 0 };
   const rollOutButtonTest = `Показать всех ${authors.length} авторов`;
   const rollUpButtonTest = 'Свернуть';

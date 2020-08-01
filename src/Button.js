@@ -1,19 +1,16 @@
 import React from 'react';
 
-class ShowMoreButton extends React.Component {
+class Button extends React.Component {
   render() {
-    const {
-      button: { title, containerOnClick, buttonOnClick, style={} }
-    } = this.props;
-
+    const style = this.props.style || {};
     return (
-      <div onClick={containerOnClick} style={style.container}>
-        <button onClick={buttonOnClick} style={style.button}>
-          {title}
+      <div onClick={this.props.containerOnClick} style={style.container}>
+        <button onClick={this.props.buttonOnClick} style={style.button}>
+          {this.props.title}
         </button>
       </div>
     )
   }
 }
 
-export default ShowMoreButton;
+export default Button;
