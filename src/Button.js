@@ -1,40 +1,19 @@
 import React from 'react';
 
-class Button extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {isToggleOn: true};
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick() {
-    if (this.state.isToggleOn) {
-      alert(this.props.button.initialAlert)
-    } else {
-      alert(this.props.button.resultAlert)
-    }
-    this.setState(state => ({
-      isToggleOn: !state.isToggleOn
-    }));
-  }
-
+class ShowMoreButton extends React.Component {
   render() {
-    const { 
-      button: { initialState, resultState, initialAlert, resultAlert } 
+    const {
+      button: { title, containerOnClick, buttonOnClick, style={} }
     } = this.props;
 
     return (
-      <button onClick={this.handleClick}>
-        {this.state.isToggleOn ? initialState : resultState}
-      </button>
-    );
+      <div onClick={containerOnClick} style={style.container}>
+        <button onClick={buttonOnClick} style={style.button}>
+          {title}
+        </button>
+      </div>
+    )
   }
 }
 
-export default Button;
-
-const styles = {
-  button: {
-    display: 'flex'
-  }
-}
+export default ShowMoreButton;

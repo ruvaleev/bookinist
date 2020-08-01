@@ -1,21 +1,63 @@
 import React from 'react';
 
 import Button from './Button';
-import AuthorCard from './AuthorCard';
-
-const button = {
-  'initialState': 'Подписаться',
-  'resultState': 'Отписаться',
-  'initialAlert': 'Вы подписаны',
-  'resultAlert': 'Вы отписаны'
-}
+import AuthorList from './AuthorList';
 
 class Book extends React.Component {
+  constructor(props) {
+    super(props);
+    this.toggleSubscription = this.toggleSubscription.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.openModal = this.openModal.bind(this);
+    this.state = {
+      isSubscribed: false,
+      raiting: this.props.book.raiting,
+      isPopular: this.props.book.raiting >= 10
+    };
+  }
+  
+  toggleSubscription() {
+    this.setState({isSubscribed: !this.state.isSubscribed});
+    if (this.state.isSubscribed) {
+      alert('Вы отписаны');
+      this.state.raiting -= 1;
+    } else {
+      alert('Вы подписаны');
+      this.state.raiting += 1;
+    }
+    this.closeModal();
+    this.setState({isPopular: this.state.raiting >= 10});
+  }
+
+  closeModal() {
+    document.getElementById('modalContainer').style.display = 'none';
+  }
+
+  openModal() {
+    document.getElementById('modalContainer').style.display = '';
+  }
+
   render() {
     const { 
       book: { title, shortDescription, pageCount, language, progress, cover, minimumPrice, desiredPrice,
-        collectedAmount, expectedAmount, authors } 
+        collectedAmount, expectedAmount, raiting, authors } 
     } = this.props;
+    const buttonTitle = this.state.isSubscribed ? 'Отписаться' : 'Подписаться';
+    const modalBody = this.state.isSubscribed ? 'Вы уверены, что хотите отписаться?' : 'Переведете нам больше денег - книга выйдет быстрее!'
+    const subscriptionButton = { 
+      buttonOnClick: this.toggleSubscription,
+      title: buttonTitle
+    };
+    const openModalButton = { 
+      buttonOnClick: this.openModal,
+      title: buttonTitle
+    };
+    const closeModalButton = { 
+      buttonOnClick: this.closeModal,
+      title: 'Закрыть'
+    };
+    const currentRaiting = this.state.raiting;
+    const popularBadge = this.state.isPopular ? '(Популярная книга)' : '';
 
     return (
       <div style={styles.container}>
@@ -35,13 +77,19 @@ class Book extends React.Component {
             <div>Желаемая цена подписки: ${desiredPrice}</div>
             <div>Уже собрано: ${collectedAmount}</div>
             <div>Ожидается собрать: ${expectedAmount}</div>
-            <Button button={button} />
+            <div>Рейтинг: {currentRaiting} {popularBadge}</div>
+            {<Button button={openModalButton}/>}
           </div>
         </div>
-        <div style={styles.row}>
-          {authors.map((author, i) => (
-            <AuthorCard key={author.id} author={author} />
-          ))}
+        <>
+          <AuthorList authors={authors}/>
+        </>
+        <div id='modalContainer' data-testid='modalContainer' style={styles.modalContainer}>
+          <div style={styles.modalBody}>
+            {modalBody}
+            {<Button button={subscriptionButton}/>}
+            {<Button button={closeModalButton}/>}
+          </div>
         </div>
       </div>
     )
@@ -53,13 +101,35 @@ export default Book;
 const styles = {
   container: {
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    margin: '2em 0'
   },
   picture: {
     margin: '0 1em'
   },
   row: {
     display: 'flex',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    overflowX: 'auto'
+  },
+  modalContainer: {
+    backgroundColor: '#00000080',
+    position: 'fixed',
+    left: '0',
+    right: '0',
+    top: '0',
+    bottom: '0',
+    display: 'none'
+  },
+  modalBody: {
+    position: 'fixed',
+    top: '40%',
+    left: '30%',
+    width: '40%',
+    backgroundColor: 'white',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column'
   }
 }
