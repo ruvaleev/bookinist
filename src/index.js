@@ -19,7 +19,14 @@ const book = {
   'authors': authors
 }
 
+const currentUser = {
+  email: 'president@google.com',
+  firstName: 'Barak',
+  lastName: 'Obama',
+  avatarUrl: 'https://biografieonline.it/img/bio/box/b/Barack_Obama.jpg'
+}
+
 ReactDom.render(
-  <App book={book}/>,
+  <App book={book} currentUser={currentUser}/>,
   document.getElementById('book')
 )
