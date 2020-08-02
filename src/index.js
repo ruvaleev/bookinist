@@ -15,6 +15,7 @@ const book = {
   'desiredPrice': 50,
   'collectedAmount': 100,
   'expectedAmount': 500,
+  'raiting': 9,
   'authors': authors
 }
 

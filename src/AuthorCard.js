@@ -32,6 +32,8 @@ export default AuthorCard;
 const styles = {
   container: {
     display: 'flex',
+    margin: '3em 0',
+    minWidth: '30%'
   },
   authorContainer: {
     display: 'flex',
