@@ -1,6 +1,7 @@
 import React from 'react';
 
 import BookCard from './BookCard';
+import FeedbackForm from './FeedbackForm';
 
 class App extends React.Component {
   render() {
@@ -9,7 +10,8 @@ class App extends React.Component {
         <header style={styles.header}>Bookinist</header>
 
         <BookCard book={this.props.book} />
-      
+        
+        <FeedbackForm/>
         <footer style={styles.footer}>Bookinist&copy; {new Date().getFullYear()}</footer>
       </>
     );
