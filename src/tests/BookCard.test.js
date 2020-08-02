@@ -100,28 +100,28 @@ test('renders raiting in card', () => {
 
 test('user sees modal window with subscription info when clicks to subscribe button', () => {
   const { getAllByText } = render(<BookCard book={book}/>);
-  const modalContainer = screen.getByTestId('modalContainer');
+  const subscriptionModal = screen.getByTestId('subscriptionModal');
 
-  expect(modalContainer).toHaveStyle('display: none');
+  expect(subscriptionModal).toHaveStyle('display: none');
   fireEvent.click(getAllByText(subscribeButton)[0], leftClick);
-  expect(modalContainer).toHaveStyle('display: block');
+  expect(subscriptionModal).toHaveStyle('display: block');
 });
 
 test('user can close modal window with subscription info', () => {
   const { getAllByText, getByText } = render(<BookCard book={book}/>);
-  const modalContainer = screen.getByTestId('modalContainer');
+  const subscriptionModal = screen.getByTestId('subscriptionModal');
 
-  expect(modalContainer).toHaveStyle('display: none');
+  expect(subscriptionModal).toHaveStyle('display: none');
   fireEvent.click(getAllByText(subscribeButton)[0], leftClick);
-  expect(modalContainer).toHaveStyle('display: block');
+  expect(subscriptionModal).toHaveStyle('display: block');
 
   fireEvent.click(getByText('Закрыть'), leftClick);
-  expect(modalContainer).toHaveStyle('display: none');
+  expect(subscriptionModal).toHaveStyle('display: none');
 });
 
 test('user can see changed raiting after subscription', () => {
   const { getAllByText, getByText } = render(<BookCard book={book}/>);
-  const modalContainer = screen.getByTestId('modalContainer');
+  const subscriptionModal = screen.getByTestId('subscriptionModal');
   const jsdomAlert = window.alert;  // remember the jsdom alert
   window.alert = () => {};  // provide an empty implementation for window.alert
 
@@ -130,7 +130,7 @@ test('user can see changed raiting after subscription', () => {
   fireEvent.click(getAllByText(subscribeButton)[0], leftClick);
   fireEvent.click(getAllByText(subscribeButton)[1], leftClick);
 
-  expect(modalContainer).toHaveStyle('display: none');
+  expect(subscriptionModal).toHaveStyle('display: none');
   expect(getByText('Рейтинг: 10 (Популярная книга)')).toBeInTheDocument();
 
   window.alert = jsdomAlert;  // restore the jsdom alert
@@ -138,7 +138,7 @@ test('user can see changed raiting after subscription', () => {
 
 test('modal window changes text after subscription', () => {
   const { getAllByText, getByText, queryByText } = render(<BookCard book={book}/>);
-  const modalContainer = screen.getByTestId('modalContainer');
+  const subscriptionModal = screen.getByTestId('subscriptionModal');
   const jsdomAlert = window.alert;  // remember the jsdom alert
   window.alert = () => {};  // provide an empty implementation for window.alert
 
@@ -148,7 +148,7 @@ test('modal window changes text after subscription', () => {
   fireEvent.click(getAllByText(subscribeButton)[0], leftClick);
   fireEvent.click(getAllByText(subscribeButton)[1], leftClick);
 
-  expect(modalContainer).toHaveStyle('display: none');
+  expect(subscriptionModal).toHaveStyle('display: none');
   expect(getByText('Вы уверены, что хотите отписаться?')).toBeInTheDocument();
   expect(queryByText('Переведете нам больше денег - книга выйдет быстрее!')).not.toBeInTheDocument();
 

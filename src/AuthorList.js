@@ -4,10 +4,8 @@ import AuthorCard from './AuthorCard';
 
 class AuthorList extends React.Component {
   render() {
-    const authors = this.props.authors
-
     return (
-      authors.map((author, i) => (
+      this.props.children.map((author, i) => (
         <AuthorCard key={author.id} author={author} />
       ))
     );

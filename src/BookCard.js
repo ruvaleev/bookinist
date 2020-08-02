@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Button from './Button';
+import ModalWindow from './ModalWindow';
 import Authors from './Authors';
 
 class Book extends React.Component {
@@ -8,7 +9,6 @@ class Book extends React.Component {
     super(props);
     this.toggleSubscription = this.toggleSubscription.bind(this);
     this.closeModal = this.closeModal.bind(this);
-    this.openModal = this.openModal.bind(this);
     this.state = {
       isSubscribed: false,
       raiting: this.props.book.raiting,
@@ -18,23 +18,21 @@ class Book extends React.Component {
   
   toggleSubscription() {
     this.setState({isSubscribed: !this.state.isSubscribed});
+    let message;
     if (this.state.isSubscribed) {
-      alert('Вы отписаны');
+      message = 'Вы отписаны';
       this.state.raiting -= 1;
     } else {
-      alert('Вы подписаны');
+      message = 'Вы подписаны';
       this.state.raiting += 1;
     }
-    this.closeModal();
     this.setState({isPopular: this.state.raiting >= 10});
+    this.closeModal();
+    alert(message)
   }
 
   closeModal() {
-    document.getElementById('modalContainer').style.display = 'none';
-  }
-
-  openModal() {
-    document.getElementById('modalContainer').style.display = '';
+    document.getElementById('subscriptionModal').style.display = 'none';
   }
 
   render() {
@@ -44,7 +42,7 @@ class Book extends React.Component {
     } = this.props;
     const modalBody = this.state.isSubscribed ? 'Вы уверены, что хотите отписаться?' : 'Переведете нам больше денег - книга выйдет быстрее!'
     const currentRaiting = this.state.raiting;
-    const popularBadge = this.state.isPopular ? '(Популярная книга)' : '';
+    const popularBadge = this.state.isPopular && '(Популярная книга)';
 
     return (
       <div style={styles.container}>
@@ -65,19 +63,15 @@ class Book extends React.Component {
             <div>Уже собрано: ${collectedAmount}</div>
             <div>Ожидается собрать: ${expectedAmount}</div>
             <div>Рейтинг: {currentRaiting} {popularBadge}</div>
-            <Button buttonOnClick={this.openModal} title={this.state.isSubscribed ? 'Отписаться' : 'Подписаться'}/>
+            <ModalWindow id='subscriptionModal' openWindowButtonTitle={this.state.isSubscribed ? 'Отписаться' : 'Подписаться'}>
+              {modalBody}
+              <Button buttonOnClick={this.toggleSubscription} title={this.state.isSubscribed ? 'Отписаться' : 'Подписаться'}/>
+            </ModalWindow>
           </div>
         </div>
         <>
           <Authors authors={authors}/>
         </>
-        <div id='modalContainer' data-testid='modalContainer' style={styles.modalContainer}>
-          <div style={styles.modalBody}>
-            {modalBody}
-            <Button buttonOnClick={this.toggleSubscription} title={this.state.isSubscribed ? 'Отписаться' : 'Подписаться'}/>
-            <Button buttonOnClick={this.closeModal} title='Закрыть'/>
-          </div>
-        </div>
       </div>
     )
   }
@@ -98,25 +92,5 @@ const styles = {
     display: 'flex',
     flexDirection: 'row',
     overflowX: 'auto'
-  },
-  modalContainer: {
-    backgroundColor: '#00000080',
-    position: 'fixed',
-    left: '0',
-    right: '0',
-    top: '0',
-    bottom: '0',
-    display: 'none'
-  },
-  modalBody: {
-    position: 'fixed',
-    top: '40%',
-    left: '30%',
-    width: '40%',
-    backgroundColor: 'white',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'column'
   }
 }

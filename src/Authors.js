@@ -50,7 +50,7 @@ class Authors extends React.Component {
 
     return (
       <div id='authorsRow' data-testid='authorsRow' style={styles.authorsRow}>
-        <AuthorList authors={authors} />
+        <AuthorList>{authors}</AuthorList>
         {authors.length > 3 && <Button containerOnClick={this.toggleRoll} title={title} style={ { container: styles.buttonContainer } }/>}
       </div>
     );
