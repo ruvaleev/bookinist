@@ -65,7 +65,7 @@ class Book extends React.Component {
             <div>Уже собрано: ${collectedAmount}</div>
             <div>Ожидается собрать: ${expectedAmount}</div>
             <div>Рейтинг: {currentRaiting} {popularBadge}</div>
-            {<Button buttonOnClick={this.openModal} title={this.state.isSubscribed ? 'Отписаться' : 'Подписаться'}/>}
+            <Button buttonOnClick={this.openModal} title={this.state.isSubscribed ? 'Отписаться' : 'Подписаться'}/>
           </div>
         </div>
         <>
@@ -74,8 +74,8 @@ class Book extends React.Component {
         <div id='modalContainer' data-testid='modalContainer' style={styles.modalContainer}>
           <div style={styles.modalBody}>
             {modalBody}
-            {<Button buttonOnClick={this.toggleSubscription} title={this.state.isSubscribed ? 'Отписаться' : 'Подписаться'}/>}
-            {<Button buttonOnClick={this.closeModal} title='Закрыть'/>}
+            <Button buttonOnClick={this.toggleSubscription} title={this.state.isSubscribed ? 'Отписаться' : 'Подписаться'}/>
+            <Button buttonOnClick={this.closeModal} title='Закрыть'/>
           </div>
         </div>
       </div>

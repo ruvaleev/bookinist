@@ -7,11 +7,9 @@ class AuthorList extends React.Component {
     const authors = this.props.authors
 
     return (
-      <>
-        {authors.map((author, i) => (
-          <AuthorCard key={author.id} author={author} />
-        ))}
-      </>
+      authors.map((author, i) => (
+        <AuthorCard key={author.id} author={author} />
+      ))
     );
   }
 }
