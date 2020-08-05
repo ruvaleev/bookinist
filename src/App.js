@@ -9,10 +9,6 @@ class App extends React.Component {
   render() {
     return (
       <AuthContext.Provider value={this.props.currentUser}>
-        {/* <header style={styles.header}>
-          Bookinist
-          <UserInfo currentUser={this.context}/>
-        </header> */}
         <Header title='Bookinist'/>
 
         <BookCard book={this.props.book} />

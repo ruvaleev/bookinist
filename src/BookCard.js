@@ -1,14 +1,13 @@
 import React from 'react';
 
-import Button from './Button';
-import ModalWindow from './ModalWindow';
+import SubscribeModal from './SubscribeModal';
 import Authors from './Authors';
+const childRef = React.createRef();
 
 class Book extends React.Component {
   constructor(props) {
     super(props);
     this.toggleSubscription = this.toggleSubscription.bind(this);
-    this.closeModal = this.closeModal.bind(this);
     this.state = {
       isSubscribed: false,
       raiting: this.props.book.raiting,
@@ -17,30 +16,25 @@ class Book extends React.Component {
   }
   
   toggleSubscription() {
-    this.setState({isSubscribed: !this.state.isSubscribed});
-    let message;
-    if (this.state.isSubscribed) {
-      message = 'Вы отписаны';
-      this.state.raiting -= 1;
-    } else {
-      message = 'Вы подписаны';
-      this.state.raiting += 1;
-    }
-    this.setState({isPopular: this.state.raiting >= 10});
-    this.closeModal();
-    alert(message)
+    this.setState((prevState, props) => (
+      {
+        isSubscribed: !prevState.isSubscribed,
+        raiting: prevState.isSubscribed ? prevState.raiting - 1 : prevState.raiting + 1,
+        isPopular: (prevState.isSubscribed && prevState.raiting > 10) || (!prevState.isSubscribed && prevState.raiting > 8)
+      }
+    ), this.closeModalwithMessage(this.state.isSubscribed ? 'Вы отписаны' : 'Вы подписаны'));
   }
 
-  closeModal() {
-    document.getElementById('subscriptionModal').style.display = 'none';
+  closeModalwithMessage(message) {
+    childRef.current.closeModal();
+    alert(message);
   }
 
   render() {
     const { 
-      book: { title, shortDescription, pageCount, language, progress, cover, minimumPrice, desiredPrice,
-        collectedAmount, expectedAmount, raiting, authors } 
+      book: { title, shortDescription, pageCount, language, progress, cover, minimumPrice,
+              desiredPrice, collectedAmount, expectedAmount, raiting, authors }
     } = this.props;
-    const modalBody = this.state.isSubscribed ? 'Вы уверены, что хотите отписаться?' : 'Переведете нам больше денег - книга выйдет быстрее!'
     const currentRaiting = this.state.raiting;
     const popularBadge = this.state.isPopular && '(Популярная книга)';
 
@@ -63,10 +57,9 @@ class Book extends React.Component {
             <div>Уже собрано: ${collectedAmount}</div>
             <div>Ожидается собрать: ${expectedAmount}</div>
             <div>Рейтинг: {currentRaiting} {popularBadge}</div>
-            <ModalWindow id='subscriptionModal' openWindowButtonTitle={this.state.isSubscribed ? 'Отписаться' : 'Подписаться'}>
-              {modalBody}
-              <Button buttonOnClick={this.toggleSubscription} title={this.state.isSubscribed ? 'Отписаться' : 'Подписаться'}/>
-            </ModalWindow>
+            <SubscribeModal isSubscribed = {this.state.isSubscribed}
+                            toggleSubscription = {this.toggleSubscription}
+                            ref={childRef}/>
           </div>
         </div>
         <>

@@ -7,18 +7,48 @@ class ModalWindow extends React.Component {
     super(props);
     this.closeModal = this.closeModal.bind(this);
     this.openModal = this.openModal.bind(this);
+    this.state = {
+      isOpen: false
+    }
   }
 
   closeModal() {
-    document.getElementById(this.props.id).style.display = 'none';
+    this.setState((prevState, props) => (
+      { isOpen: false }
+    ))
   }
 
   openModal() {
-    document.getElementById(this.props.id).style.display = '';
+    this.setState((prevState, props) => (
+      { isOpen: true }
+    ))
   }
 
   render() {
     const { id, openWindowButtonTitle, children } = this.props;
+    const styles = {
+      modalContainer: {
+        backgroundColor: '#00000080',
+        position: 'fixed',
+        left: '0',
+        right: '0',
+        top: '0',
+        bottom: '0',
+        display: (this.state.isOpen) || 'none'
+      },
+      modalBody: {
+        position: 'fixed',
+        top: '40%',
+        left: '30%',
+        width: '40%',
+        backgroundColor: 'white',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'column'
+      }
+    }
+
     return (
       <>
         <Button buttonOnClick={this.openModal} title={openWindowButtonTitle}/>
@@ -34,26 +64,3 @@ class ModalWindow extends React.Component {
 }
 
 export default ModalWindow;
-
-const styles = {
-  modalContainer: {
-    backgroundColor: '#00000080',
-    position: 'fixed',
-    left: '0',
-    right: '0',
-    top: '0',
-    bottom: '0',
-    display: 'none'
-  },
-  modalBody: {
-    position: 'fixed',
-    top: '40%',
-    left: '30%',
-    width: '40%',
-    backgroundColor: 'white',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'column'
-  }
-}
