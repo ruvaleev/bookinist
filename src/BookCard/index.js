@@ -2,6 +2,8 @@ import React from 'react';
 
 import SubscribeModal from './SubscribeModal';
 import Authors from '../Authors/index';
+import recommendations from './books.json';
+import RecommendationList from './RecommendationList'
 
 class Book extends React.Component {
   constructor(props) {
@@ -57,6 +59,9 @@ class Book extends React.Component {
             <SubscribeModal isSubscribed = {this.state.isSubscribed}
                             onSuccess = {this.toggleSubscription}/>
           </div>
+          <div style={styles.recommendations}>
+            <RecommendationList recommendations={recommendations}/>
+          </div>
         </div>
         <>
           <Authors authors={authors}/>
@@ -72,7 +77,7 @@ const styles = {
   container: {
     display: 'flex',
     flexDirection: 'column',
-    margin: '2em 0'
+    margin: '3em 0'
   },
   picture: {
     margin: '0 1em'
@@ -81,5 +86,10 @@ const styles = {
     display: 'flex',
     flexDirection: 'row',
     overflowX: 'auto'
+  },
+  recommendations: {
+    display: 'flex',
+    flexDirection: 'column',
+    marginLeft: '3em'
   }
 }

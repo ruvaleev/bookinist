@@ -1,0 +1,94 @@
+[
+  { 
+    "id": 2,
+    "title": "От Заката до Рассвета",
+    "shortDescription": "Про вампиров.",
+    "pageCount": 797,
+    "language": "English",
+    "progress": 80,
+    "cover": "https://sun9-12.userapi.com/c854416/v854416981/a6cac/f6PzhBoCJzM.jpg",
+    "minimumPrice": 10,
+    "desiredPrice": 50,
+    "collectedAmount": 100,
+    "expectedAmount": 500,
+    "raiting": 9,
+    "authors": [
+      {
+        "id": 4,
+        "name": "Квентин Тарантино",
+        "email": "tarantino@gmail.com",
+        "avatar": "https://avatars.mds.yandex.net/get-zen_doc/1893760/pub_5dd422a921cd6d24351d540f_5dd42b51a29ee0330b84d47d/scale_1200",
+        "shortInformation": "Американский кинорежиссёр, сценарист, актёр, кинопродюсер и кинооператор. Один из наиболее ярких представителей постмодернизма в кинематографе"
+      }
+    ]
+  },
+  { 
+    "id": 3,
+    "title": "Игра Престолов",
+    "shortDescription": "Про драконов.",
+    "pageCount": 1097,
+    "language": "English",
+    "progress": 80,
+    "cover": "https://www.kinobusiness.com/upload/iblock/dea/deab6a856e93af189241fa935e7936c0.jpg",
+    "minimumPrice": 10,
+    "desiredPrice": 50,
+    "collectedAmount": 100,
+    "expectedAmount": 500,
+    "raiting": 9,
+    "authors": [
+      {
+        "id": 3,
+        "name": "Джордж Мартин",
+        "email": "martin@gmail.com",
+        "avatar": "https://biografieonline.it/img/bio/George_R._R._Martin_3.jpg",
+        "shortInformation": "Современный американский писатель-фантаст, сценарист, продюсер и редактор, лауреат многих литературных премий"
+      }
+    ]
+  },
+  { 
+    "id": 4,
+    "title": "Похождения бравого солдата Швейка",
+    "shortDescription": "Про немцев.",
+    "pageCount": 797,
+    "language": "Чешский",
+    "progress": 80,
+    "cover": "https://sun9-48.userapi.com/c837337/v837337269/3ae8d/LhcbcPDR80c.jpg",
+    "minimumPrice": 10,
+    "desiredPrice": 50,
+    "collectedAmount": 100,
+    "expectedAmount": 500,
+    "raiting": 9,
+    "authors": [
+      {
+        "id": 5,
+        "name": "Ярослав Гашек",
+        "email": "gashek@gmail.com",
+        "avatar": "http://biblioserov.ucoz.ru/ubilei/1333957882.jpg",
+        "shortInformation": "Чешский писатель-сатирик, анархист, драматург, фельетонист, журналист, комиссар Красной армии."
+      }
+    ]
+  },
+  { 
+    "id": 5,
+    "title": "Чиполлино",
+    "shortDescription": "Про власть и народ.",
+    "pageCount": 797,
+    "language": "Русский",
+    "progress": 80,
+    "cover": "http://domovenok.name/_ld/4/s73141191.jpg",
+    "minimumPrice": 10,
+    "desiredPrice": 50,
+    "collectedAmount": 100,
+    "expectedAmount": 500,
+    "raiting": 9,
+    "authors": [
+      {
+        "id": 6,
+        "name": "Джанни Родари",
+        "email": "rodari@gmail.com",
+        "avatar": "https://regnum.ru/uploads/pictures/news/2015/10/23/regnum_picture_1445557712_normal.png",
+        "shortInformation": "Итальянский детский писатель, сказочник и журналист"
+      }
+    ]
+  }
+]
