@@ -2,7 +2,7 @@ import ReactDom from 'react-dom';
 import React from 'react';
 
 import App from './App';
-import authors from './authors.json';
+import authors from './Authors/authors.json';
 
 const book = {
   'title': 'Тихий Дон',

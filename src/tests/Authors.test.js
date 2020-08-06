@@ -2,8 +2,8 @@ import React from 'react';
 import { render, fireEvent, queryByText, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
-import Authors from '../Authors';
-import authors from '../authors.json';
+import Authors from '../Authors/index';
+import authors from '../Authors/authors.json';
 
 test("can scroll authors list after button click", () => {
   const { getByText, queryByText } = render(<Authors authors={authors} />);

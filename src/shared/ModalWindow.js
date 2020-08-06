@@ -26,33 +26,11 @@ class ModalWindow extends React.Component {
 
   render() {
     const { id, openWindowButtonTitle, children } = this.props;
-    const styles = {
-      modalContainer: {
-        backgroundColor: '#00000080',
-        position: 'fixed',
-        left: '0',
-        right: '0',
-        top: '0',
-        bottom: '0',
-        display: (this.state.isOpen) || 'none'
-      },
-      modalBody: {
-        position: 'fixed',
-        top: '40%',
-        left: '30%',
-        width: '40%',
-        backgroundColor: 'white',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexDirection: 'column'
-      }
-    }
 
     return (
       <>
         <Button buttonOnClick={this.openModal} title={openWindowButtonTitle}/>
-        <div id={id} data-testid={id} style={styles.modalContainer}>
+        <div id={id} data-testid={id} style={{...styles.modalContainer, ...{ display: this.state.isOpen || 'none'  }}}>
           <div style={styles.modalBody}>
             {children}
             <Button buttonOnClick={this.closeModal} title='Закрыть'/>
@@ -64,3 +42,26 @@ class ModalWindow extends React.Component {
 }
 
 export default ModalWindow;
+
+const styles = {
+  modalContainer: {
+    backgroundColor: '#00000080',
+    position: 'fixed',
+    left: '0',
+    right: '0',
+    top: '0',
+    bottom: '0',
+    display: 'none'
+  },
+  modalBody: {
+    position: 'fixed',
+    top: '40%',
+    left: '30%',
+    width: '40%',
+    backgroundColor: 'white',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column'
+  }
+}

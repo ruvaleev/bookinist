@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Button from './Button';
-import ModalWindow from './ModalWindow';
+import Button from '../shared/Button';
+import ModalWindow from '../shared/ModalWindow';
 const childRef = React.createRef();
 
 class SubscribeModal extends React.Component {

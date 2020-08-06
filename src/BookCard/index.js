@@ -1,7 +1,7 @@
 import React from 'react';
 
 import SubscribeModal from './SubscribeModal';
-import Authors from './Authors';
+import Authors from '../Authors/index';
 const childRef = React.createRef();
 
 class Book extends React.Component {

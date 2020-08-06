@@ -1,7 +1,7 @@
 import React from  'react';
 
 import AuthorList from './AuthorList';
-import Button from './Button';
+import Button from '../shared/Button';
 // import arrow from 'url:./images/arrow.png';
 
 class Authors extends React.Component {

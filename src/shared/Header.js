@@ -1,7 +1,7 @@
 import React from 'react';
 
 import UserInfo from './UserInfo';
-import AuthContext from './AuthContext';
+import AuthContext from '../AuthContext';
 
 class Header extends React.Component {
   render() {

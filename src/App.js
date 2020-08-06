@@ -1,8 +1,8 @@
 import React from 'react';
 
-import BookCard from './BookCard';
-import FeedbackForm from './FeedbackForm';
-import Header from './Header';
+import BookCard from './BookCard/index';
+import FeedbackForm from './shared/FeedbackForm';
+import Header from './shared/Header';
 import AuthContext from './AuthContext';
 
 class App extends React.Component {
