@@ -18,7 +18,6 @@ class Authors extends React.Component {
   render() {
     const authors = this.props.authors
     const isRolledUp = this.state.isRolledUp;
-    const title = isRolledUp ? `Показать всех ${authors.length} авторов` : 'Свернуть';
     const styles = {
       authorsRow: (isRolledUp) ? {
         display: 'flex',
@@ -51,7 +50,10 @@ class Authors extends React.Component {
     return (
       <div id='authorsRow' data-testid='authorsRow' style={styles.authorsRow}>
         <AuthorList>{authors}</AuthorList>
-        {authors.length > 3 && <Button containerOnClick={this.toggleRoll} title={title} style={ { container: styles.buttonContainer } }/>}
+        {authors.length > 3 &&
+          <Button containerOnClick={this.toggleRoll} style={ { container: styles.buttonContainer } }>
+            {isRolledUp ? `Показать всех ${authors.length} авторов` : 'Свернуть'}
+          </Button>}
       </div>
     );
   }

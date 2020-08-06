@@ -27,7 +27,7 @@ class FeedbackForm extends React.Component {
         <textarea id='question' placeholder='Ваш вопрос...'/>
         <input id='name' placeholder='Имя'/>
         <input id='email' placeholder='Email'/>
-        <Button buttonOnClick={this.sendForm} title='Задать вопрос'/>
+        <Button buttonOnClick={this.sendForm}>Задать вопрос</Button>
       </div>
     )
   }

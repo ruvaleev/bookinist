@@ -12,16 +12,16 @@ class SubscribeModal extends React.Component {
 
   render() {
     const { isSubscribed, toggleSubscription } = this.props;
-    const title = isSubscribed ? 'Отписаться' : 'Подписаться'
-    const modalBody = isSubscribed ? 'Вы уверены, что хотите отписаться?' : 'Переведете нам больше денег - книга выйдет быстрее!'
+    const title = isSubscribed ? 'Отписаться' : 'Подписаться';
     return (
       <>
         <ModalWindow id='subscriptionModal'
                          openWindowButtonTitle={title}
                          ref={childRef}>
-          {modalBody}
-          <Button buttonOnClick={toggleSubscription}
-                  title={title}/>
+          {isSubscribed ? 'Вы уверены, что хотите отписаться?' : 'Переведете нам больше денег - книга выйдет быстрее!'}
+          <Button buttonOnClick={toggleSubscription}>
+            {title}
+          </Button>
         </ModalWindow>
       </>
     )

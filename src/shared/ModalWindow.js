@@ -29,11 +29,11 @@ class ModalWindow extends React.Component {
 
     return (
       <>
-        <Button buttonOnClick={this.openModal} title={openWindowButtonTitle}/>
+        <Button buttonOnClick={this.openModal}>{openWindowButtonTitle}</Button>
         <div id={id} data-testid={id} style={{...styles.modalContainer, ...{ display: this.state.isOpen || 'none'  }}}>
           <div style={styles.modalBody}>
             {children}
-            <Button buttonOnClick={this.closeModal} title='Закрыть'/>
+            <Button buttonOnClick={this.closeModal}>Закрыть</Button>
           </div>
         </div>
       </>
