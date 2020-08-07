@@ -2,30 +2,50 @@ import React from 'react';
 
 import Button from '../shared/Button';
 import ModalWindow from '../shared/ModalWindow';
-const childRef = React.createRef();
 
 class SubscribeModal extends React.Component {
+  constructor(props) {
+    super(props);
+    this.onSuccess = this.onSuccess.bind(this);
+  }
 
-  closeModal() {
-    childRef.current.closeModal();
+  onSuccess() {
+    this.props.onSuccess();
   }
 
   render() {
-    const { isSubscribed, toggleSubscription } = this.props;
-    const title = isSubscribed ? 'Отписаться' : 'Подписаться';
+    const { isSubscribed } = this.props;
     return (
-      <>
-        <ModalWindow id='subscriptionModal'
-                         openWindowButtonTitle={title}
-                         ref={childRef}>
-          {isSubscribed ? 'Вы уверены, что хотите отписаться?' : 'Переведете нам больше денег - книга выйдет быстрее!'}
-          <Button buttonOnClick={toggleSubscription}>
-            {title}
-          </Button>
-        </ModalWindow>
-      </>
+      <ModalWindow 
+        id='subscriptionModal'
+        openWindowButtonTitle={isSubscribed ? 'Отписаться' : 'Подписаться'}
+      >
+        <ModalBody onSuccess={this.onSuccess} isSubscribed={isSubscribed} />
+      </ModalWindow>
     )
   }
 }
 
 export default SubscribeModal;
+
+const ModalBody = ({ isSubscribed, closeModal, onSuccess }) => (
+  <div style={styles.modalBody}>
+    {isSubscribed ? 'Вы уверены, что хотите отписаться?' : 'Переведете нам больше денег - книга выйдет быстрее!'}
+    <Button 
+      buttonOnClick={() => {
+        onSuccess();
+        closeModal();
+      }}
+    >
+      {isSubscribed ? 'Отписаться' : 'Подписаться'}
+    </Button>
+  </div>
+);
+
+const styles = {
+  modalBody: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
+  }
+}

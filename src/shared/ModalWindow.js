@@ -8,7 +8,7 @@ class ModalWindow extends React.Component {
     this.closeModal = this.closeModal.bind(this);
     this.openModal = this.openModal.bind(this);
     this.state = {
-      isOpen: false
+      isOpen: this.props.isOpen
     }
   }
 
@@ -21,7 +21,7 @@ class ModalWindow extends React.Component {
   openModal() {
     this.setState((prevState, props) => (
       { isOpen: true }
-    ))
+    ));
   }
 
   render() {
@@ -30,9 +30,9 @@ class ModalWindow extends React.Component {
     return (
       <>
         <Button buttonOnClick={this.openModal}>{openWindowButtonTitle}</Button>
-        <div id={id} data-testid={id} style={{...styles.modalContainer, ...{ display: this.state.isOpen || 'none'  }}}>
+        <div id={id} data-testid={id} style={{...styles.modalContainer, ...{ display: this.state.isOpen ? 'block' : 'none' }}}>
           <div style={styles.modalBody}>
-            {children}
+            {React.cloneElement(children, {closeModal: this.closeModal})}
             <Button buttonOnClick={this.closeModal}>Закрыть</Button>
           </div>
         </div>

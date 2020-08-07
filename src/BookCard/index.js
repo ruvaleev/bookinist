@@ -2,16 +2,15 @@ import React from 'react';
 
 import SubscribeModal from './SubscribeModal';
 import Authors from '../Authors/index';
-const childRef = React.createRef();
 
 class Book extends React.Component {
   constructor(props) {
     super(props);
     this.toggleSubscription = this.toggleSubscription.bind(this);
+    this.isPopular = this.isPopular.bind(this);
     this.state = {
       isSubscribed: false,
-      raiting: this.props.book.raiting,
-      isPopular: this.props.book.raiting >= 10
+      raiting: this.props.book.raiting
     };
   }
   
@@ -19,15 +18,13 @@ class Book extends React.Component {
     this.setState((prevState, props) => (
       {
         isSubscribed: !prevState.isSubscribed,
-        raiting: prevState.isSubscribed ? prevState.raiting - 1 : prevState.raiting + 1,
-        isPopular: (prevState.isSubscribed && prevState.raiting > 10) || (!prevState.isSubscribed && prevState.raiting > 8)
+        raiting: prevState.isSubscribed ? prevState.raiting - 1 : prevState.raiting + 1
       }
-    ), this.closeModalwithMessage(this.state.isSubscribed ? 'Вы отписаны' : 'Вы подписаны'));
+    ), alert(this.state.isSubscribed ? 'Вы отписаны' : 'Вы подписаны'));
   }
 
-  closeModalwithMessage(message) {
-    childRef.current.closeModal();
-    alert(message);
+  isPopular(currentRaiting) {
+    return currentRaiting >= 10
   }
 
   render() {
@@ -36,7 +33,7 @@ class Book extends React.Component {
               desiredPrice, collectedAmount, expectedAmount, raiting, authors }
     } = this.props;
     const currentRaiting = this.state.raiting;
-    const popularBadge = this.state.isPopular && '(Популярная книга)';
+    const popularBadge = this.isPopular(currentRaiting) && '(Популярная книга)';
 
     return (
       <div style={styles.container}>
@@ -58,8 +55,7 @@ class Book extends React.Component {
             <div>Ожидается собрать: ${expectedAmount}</div>
             <div>Рейтинг: {currentRaiting} {popularBadge}</div>
             <SubscribeModal isSubscribed = {this.state.isSubscribed}
-                            toggleSubscription = {this.toggleSubscription}
-                            ref={childRef}/>
+                            onSuccess = {this.toggleSubscription}/>
           </div>
         </div>
         <>
