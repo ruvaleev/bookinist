@@ -1,16 +1,11 @@
 import React from 'react';
 
-class UserInfo extends React.Component {
-  render() {
-    const { currentUser: { email, firstName, lastName, avatarUrl } } = this.props;
-    return (
-      <div style={styles.container}>
-        {firstName} {lastName}
-        <img src={avatarUrl} style={styles.avatar}/>
-      </div>
-    )
-  }
-}
+const UserInfo = ({ currentUser }) => (
+  <div style={styles.container}>
+    {currentUser.firstName} {currentUser.lastName}
+    <img src={currentUser.avatarUrl} style={styles.avatar}/>
+  </div>
+)
 
 export default UserInfo;
 

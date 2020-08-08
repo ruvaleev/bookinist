@@ -5,6 +5,7 @@ import App from './App';
 import authors from './Authors/authors.json';
 
 const book = {
+  'id': 1,
   'title': 'Тихий Дон',
   'shortDescription': 'Роман-эпопея в четырёх томах, написанный Михаилом Шолоховым.',
   'pageCount': 697,

@@ -5,20 +5,16 @@ import FeedbackForm from './shared/FeedbackForm';
 import Header from './shared/Header';
 import AuthContext from './AuthContext';
 
-class App extends React.Component {
-  render() {
-    return (
-      <AuthContext.Provider value={this.props.currentUser}>
-        <Header title='Bookinist'/>
+const App = (props) => (
+  <AuthContext.Provider value={props.currentUser}>
+    <Header title='Bookinist'/>
 
-        <BookCard book={this.props.book} />
-        
-        <FeedbackForm/>
-        <footer style={styles.footer}>Bookinist&copy; {new Date().getFullYear()}</footer>
-      </AuthContext.Provider>
-    );
-  };
-}
+    <BookCard book={props.book} />
+    
+    <FeedbackForm/>
+    <footer style={styles.footer}>Bookinist&copy; {new Date().getFullYear()}</footer>
+  </AuthContext.Provider>
+);
 
 export default App;
 
