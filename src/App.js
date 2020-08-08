@@ -1,17 +1,21 @@
 import React from 'react';
 
-import BookCard from './BookCard';
+import BookCard from './BookCard/index';
+import FeedbackForm from './shared/FeedbackForm';
+import Header from './shared/Header';
+import AuthContext from './AuthContext';
 
 class App extends React.Component {
   render() {
     return (
-      <>
-        <header style={styles.header}>Bookinist</header>
+      <AuthContext.Provider value={this.props.currentUser}>
+        <Header title='Bookinist'/>
 
         <BookCard book={this.props.book} />
-      
+        
+        <FeedbackForm/>
         <footer style={styles.footer}>Bookinist&copy; {new Date().getFullYear()}</footer>
-      </>
+      </AuthContext.Provider>
     );
   };
 }
@@ -27,7 +31,7 @@ const styles = {
     position: 'fixed',
     left: '0',
     top: '0',
-    height: '2em',
+    height: '3em',
     alignItems: 'center',
     fontFamily: 'Arial',
     fontWeight: 'bold',
