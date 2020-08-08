@@ -3,6 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
 import BookCard from '../BookCard/index';
+import recommendations from '../BookCard/books.json';
 
 const firstAuthor = {
   'name': 'Михаил Шолохов',
@@ -30,7 +31,8 @@ const book = {
   'collectedAmount': 100,
   'expectedAmount': 500,
   'raiting': 9,
-  'authors': [firstAuthor, secondAuthor]
+  'authors': [firstAuthor, secondAuthor],
+  'recommendations': recommendations
 }
 
 const leftClick = { button: 0 };
