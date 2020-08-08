@@ -9,12 +9,18 @@ class Book extends React.Component {
     super(props);
     this.toggleSubscription = this.toggleSubscription.bind(this);
     this.isPopular = this.isPopular.bind(this);
+    this.amountInputRef = React.createRef();
     this.state = {
       isSubscribed: false,
       raiting: this.props.book.raiting
     };
   }
   
+
+  componentDidMount() {
+    this.amountInputRef.current.focus();
+  }
+
   toggleSubscription() {
     this.setState((prevState, props) => (
       {
@@ -55,6 +61,7 @@ class Book extends React.Component {
             <div>Уже собрано: ${collectedAmount}</div>
             <div>Ожидается собрать: ${expectedAmount}</div>
             <div>Рейтинг: {currentRaiting} {popularBadge}</div>
+            <input ref={this.amountInputRef} type='text' name='amount' placeholder='Сколько готовы перечислить?'/>
             <SubscribeModal isSubscribed = {this.state.isSubscribed}
                             onSuccess = {this.toggleSubscription}/>
           </div>
