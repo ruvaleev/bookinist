@@ -2,7 +2,6 @@ import React from 'react';
 
 import SubscribeModal from './SubscribeModal';
 import Authors from '../Authors/index';
-import recommendations from './books.json';
 import RecommendationList from './RecommendationList'
 
 class Book extends React.Component {
@@ -32,7 +31,7 @@ class Book extends React.Component {
   render() {
     const { 
       book: { title, shortDescription, pageCount, language, progress, cover, minimumPrice,
-              desiredPrice, collectedAmount, expectedAmount, raiting, authors }
+              desiredPrice, collectedAmount, expectedAmount, raiting, authors, recommendations }
     } = this.props;
     const currentRaiting = this.state.raiting;
     const popularBadge = this.isPopular(currentRaiting) && '(Популярная книга)';

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import BookCard from './BookCard/index';
+import BookContainer from './BookContainer';
 import FeedbackForm from './shared/FeedbackForm';
 import Header from './shared/Header';
 import AuthContext from './AuthContext';
@@ -9,7 +9,7 @@ const App = (props) => (
   <AuthContext.Provider value={props.currentUser}>
     <Header title='Bookinist'/>
 
-    <BookCard book={props.book} />
+    <BookContainer />
     
     <FeedbackForm/>
     <footer style={styles.footer}>Bookinist&copy; {new Date().getFullYear()}</footer>
