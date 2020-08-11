@@ -34,10 +34,7 @@ class BookContainer extends React.Component {
 
     return (
       <div style={styles.container}>
-        {record ?
-          <BookCard book={record}/>
-          : <div>Loading...</div>}
-
+        <BookCard isLoading={!record} book={record}/>
       </div>
     )
   }

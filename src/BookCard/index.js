@@ -2,7 +2,8 @@ import React from 'react';
 
 import SubscribeModal from './SubscribeModal';
 import Authors from '../Authors/index';
-import RecommendationList from './RecommendationList'
+import RecommendationList from './RecommendationList';
+import withLoading from '../HOC/withLoading';
 
 class Book extends React.Component {
   constructor(props) {
@@ -77,7 +78,7 @@ class Book extends React.Component {
   }
 }
 
-export default Book;
+export default withLoading(Book);
 
 const styles = {
   container: {
