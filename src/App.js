@@ -1,15 +1,17 @@
 import React from 'react';
 
-import BookContainer from './BookContainer';
 import FeedbackForm from './shared/FeedbackForm';
 import Header from './shared/Header';
 import AuthContext from './AuthContext';
+import Book from './BookCard/index';
+import getBook from './HOC/getBook';
+const FetchedBook = getBook(Book, 'reckmfqNyptO7JXGt');
 
 const App = (props) => (
   <AuthContext.Provider value={props.currentUser}>
     <Header title='Bookinist'/>
 
-    <BookContainer />
+    <div style={styles.book}><FetchedBook/></div>
     
     <FeedbackForm/>
     <footer style={styles.footer}>Bookinist&copy; {new Date().getFullYear()}</footer>
@@ -44,5 +46,8 @@ const styles = {
     fonfontFamily: 'Arial',
     color: 'white',
     fontSize: '0.7em'
+  },
+  book: {
+    marginTop: '4em'
   }
 }
