@@ -1,20 +1,17 @@
 import React from 'react';
 
 import UserInfo from './UserInfo';
-import AuthContext from '../AuthContext';
 
 class Header extends React.Component {
   render() {
     return (
       <header style={styles.header}>
         {this.props.title}
-        <UserInfo currentUser={this.context}/>
+        <UserInfo/>
       </header>
     )
   }
 }
-
-Header.contextType = AuthContext;
 
 export default Header;
 
