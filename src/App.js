@@ -4,15 +4,21 @@ import FeedbackForm from './shared/FeedbackForm';
 import Header from './shared/Header';
 import AuthContext from './AuthContext';
 import Book from './BookCard/index';
-import getBook from './HOC/getBook';
-const FetchedBook = getBook(Book, 'reckmfqNyptO7JXGt');
+import getBook from './hooks/getBook';
+
+const FetchedBook = (bookId) => {
+  const fetchedBook = getBook('reckmfqNyptO7JXGt');
+  return (
+    <Book isLoading={!fetchedBook} book={fetchedBook}/>
+  )
+}
 
 const App = (props) => (
   <AuthContext.Provider value={props.currentUser}>
     <Header title='Bookinist'/>
 
-    <div style={styles.book}><FetchedBook/></div>
-    
+    <div style={styles.book}><FetchedBook bookId='reckmfqNyptO7JXGt'/></div>
+
     <FeedbackForm/>
     <footer style={styles.footer}>Bookinist&copy; {new Date().getFullYear()}</footer>
   </AuthContext.Provider>
