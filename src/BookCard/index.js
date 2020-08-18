@@ -2,7 +2,8 @@ import React from 'react';
 
 import SubscribeModal from './SubscribeModal';
 import Authors from '../Authors/index';
-import RecommendationList from './RecommendationList'
+import RecommendationList from './RecommendationList';
+import withLoading from '../HOC/withLoading';
 
 class Book extends React.Component {
   constructor(props) {
@@ -12,13 +13,8 @@ class Book extends React.Component {
     this.amountInputRef = React.createRef();
     this.state = {
       isSubscribed: false,
-      raiting: this.props.book.raiting
+      raiting: this.props.book && this.props.book.raiting
     };
-  }
-  
-
-  componentDidMount() {
-    this.amountInputRef.current.focus();
   }
 
   toggleSubscription() {
@@ -35,49 +31,47 @@ class Book extends React.Component {
   }
 
   render() {
-    const { 
-      book: { title, shortDescription, pageCount, language, progress, cover, minimumPrice,
-              desiredPrice, collectedAmount, expectedAmount, raiting, authors, recommendations }
-    } = this.props;
+    const book = this.props.book;
     const currentRaiting = this.state.raiting;
     const popularBadge = this.isPopular(currentRaiting) && '(Популярная книга)';
-
     return (
-      <div style={styles.container}>
-        <div style={styles.row}>
-          <div style={styles.half}>
-            <a href={cover}>
-              <img src={cover} style={styles.picture}/>
-            </a>
+      book == null
+      ? null
+      :
+        <div style={styles.container}>
+          <div style={styles.row}>
+            <div style={styles.half}>
+              <a href={book.cover}>
+                <img src={book.cover} style={styles.picture}/>
+              </a>
+            </div>
+            <div style={styles.half}>
+              <h2 style={styles.title}>{book.title}</h2>
+              <div style={styles.pageCount}>Кол-во страниц: {book.pageCount}</div>
+              <div style={styles.shortDescription}>{book.shortDescription}</div>
+              <div style={styles.language}>Язык: {book.language}</div>
+              <div style={styles.progress}>Прогресс: {book.progress}%</div>
+              <div>Минимальная цена подписки: ${book.minimumPrice}</div>
+              <div>Желаемая цена подписки: ${book.desiredPrice}</div>
+              <div>Уже собрано: ${book.collectedAmount}</div>
+              <div>Ожидается собрать: ${book.expectedAmount}</div>
+              <div>Рейтинг: {currentRaiting} {popularBadge}</div>
+              <SubscribeModal isSubscribed = {this.state.isSubscribed}
+                              onSuccess = {this.toggleSubscription}/>
+            </div>
+            <div style={styles.recommendations}>
+              <RecommendationList recommendations={book.recommendations}/>
+            </div>
           </div>
-          <div style={styles.half}>
-            <h2 style={styles.title}>{title}</h2>
-            <div style={styles.pageCount}>Кол-во страниц: {pageCount}</div>
-            <div style={styles.shortDescription}>{shortDescription}</div>
-            <div style={styles.language}>Язык: {language}</div>
-            <div style={styles.progress}>Прогресс: {progress}%</div>
-            <div>Минимальная цена подписки: ${minimumPrice}</div>
-            <div>Желаемая цена подписки: ${desiredPrice}</div>
-            <div>Уже собрано: ${collectedAmount}</div>
-            <div>Ожидается собрать: ${expectedAmount}</div>
-            <div>Рейтинг: {currentRaiting} {popularBadge}</div>
-            <input ref={this.amountInputRef} type='text' name='amount' placeholder='Сколько готовы перечислить?'/>
-            <SubscribeModal isSubscribed = {this.state.isSubscribed}
-                            onSuccess = {this.toggleSubscription}/>
-          </div>
-          <div style={styles.recommendations}>
-            <RecommendationList recommendations={recommendations}/>
-          </div>
+          <>
+            <Authors authors={book.authors}/>
+          </>
         </div>
-        <>
-          <Authors authors={authors}/>
-        </>
-      </div>
     )
   }
 }
 
-export default Book;
+export default withLoading(Book);
 
 const styles = {
   container: {
