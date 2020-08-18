@@ -60,7 +60,7 @@ function _mapRecommendations(fields) {
   }))
 }
 
-const getBook = (bookId) => {
+const useFetchBook = (bookId) => {
   const [record, setRecord] = useState(null);
 
   useEffect(() => {
@@ -72,4 +72,4 @@ const getBook = (bookId) => {
   return record;
 };
 
-export default getBook;
+export default useFetchBook;

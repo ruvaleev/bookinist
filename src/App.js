@@ -4,17 +4,17 @@ import FeedbackForm from './shared/FeedbackForm';
 import Header from './shared/Header';
 import AuthContext from './AuthContext';
 import Book from './BookCard/index';
-import getBook from './hooks/getBook';
+import useFetchBook from './hooks/useFetchBook';
 
 const FetchedBook = (bookId) => {
-  const fetchedBook = getBook('reckmfqNyptO7JXGt');
+  const fetchedBook = useFetchBook('reckmfqNyptO7JXGt');
   return (
     <Book isLoading={!fetchedBook} book={fetchedBook}/>
   )
 }
 
 const App = (props) => (
-  <AuthContext.Provider value={props.currentUser}>
+  <AuthContext.Provider value={props.currentUser || defaultUser}>
     <Header title='Bookinist'/>
 
     <div style={styles.book}><FetchedBook bookId='reckmfqNyptO7JXGt'/></div>
@@ -25,6 +25,13 @@ const App = (props) => (
 );
 
 export default App;
+
+const defaultUser = {
+  avatarUrl: 'https://img-21.ccm2.net/QMsKLPIdP5esOtbLxq_krAnWp8Y=/340x/e325f75c9f244df5b50acf12285062e1/ccm-faq/incognito-2231825_640.png',
+  firstName: 'Авторизуйтесь',
+  lastName: 'пжлста',
+  email: ''
+}
 
 const styles = {
   header: {

@@ -14,8 +14,8 @@ const httpClient = axios.create({
   }
 })
 
-function getBook(EnhancedComponent, bookId) {
-  return class GetBook extends React.Component {
+function useFetchBook(EnhancedComponent, bookId) {
+  return class useFetchBook extends React.Component {
     constructor(props) {
       super(props);
       this._mapFromAirtable = this._mapFromAirtable.bind(this);
@@ -88,7 +88,7 @@ function getBook(EnhancedComponent, bookId) {
   };
 }
 
-export default getBook;
+export default useFetchBook;
 
 const styles = {
   container: {

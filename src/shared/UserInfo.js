@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import AuthContext from '../AuthContext';
 
 const UserInfo = () => {
-  const currentUser = useContext(AuthContext) || defaultUser;
+  const currentUser = useContext(AuthContext);
 
   return (
   <div style={styles.container}>
@@ -13,13 +13,6 @@ const UserInfo = () => {
 }
 
 export default UserInfo;
-
-const defaultUser = {
-  avatarUrl: 'https://img-21.ccm2.net/QMsKLPIdP5esOtbLxq_krAnWp8Y=/340x/e325f75c9f244df5b50acf12285062e1/ccm-faq/incognito-2231825_640.png',
-  firstName: 'Авторизуйтесь',
-  lastName: 'пжлста',
-  email: ''
-}
 
 const styles = {
   container: {
