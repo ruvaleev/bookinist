@@ -38,41 +38,87 @@ class Book extends React.Component {
       book == null
       ? null
       :
-        <div style={styles.container}>
-          <div style={styles.row}>
-            <div style={styles.half}>
-              <a href={book.cover}>
-                <img src={book.cover} style={styles.picture}/>
-              </a>
-            </div>
-            <div style={styles.half}>
-              <h2 style={styles.title}>{book.title}</h2>
-              <div style={styles.pageCount}>Кол-во страниц: {book.pageCount}</div>
-              <div style={styles.shortDescription}>{book.shortDescription}</div>
-              <div style={styles.language}>Язык: {book.language}</div>
-              <div style={styles.progress}>Прогресс: {book.progress}%</div>
-              <div>Минимальная цена подписки: ${book.minimumPrice}</div>
-              <div>Желаемая цена подписки: ${book.desiredPrice}</div>
-              <div>Уже собрано: ${book.collectedAmount}</div>
-              <div>Ожидается собрать: ${book.expectedAmount}</div>
-              <div>Рейтинг: {currentRaiting} {popularBadge}</div>
-              <SubscribeModal isSubscribed = {this.state.isSubscribed}
-                              onSuccess = {this.toggleSubscription}/>
-            </div>
-            <div style={styles.recommendations}>
-              <RecommendationList recommendations={book.recommendations}/>
-            </div>
-          </div>
-          <>
-            <Authors authors={book.authors}/>
-          </>
-        </div>
+      <BookContainer>
+        <BookRow>
+          <BookCover cover={book.cover}/>
+          <BookInfo>
+            <BookTitle>{book.title}</BookTitle>
+            <BookPageCount>Кол-во страниц: {book.pageCount}</BookPageCount>
+            <BookShortDescription>{book.shortDescription}</BookShortDescription>
+            <BookLanguage>Язык: {book.language}</BookLanguage>
+            <BookProgress>Прогресс: {book.progress}%</BookProgress>
+            <BookMinimumPrice>Минимальная цена подписки: ${book.minimumPrice}</BookMinimumPrice>
+            <BookDesiredPrice>Желаемая цена подписки: ${book.desiredPrice}</BookDesiredPrice>
+            <BookCollectedAmount>Уже собрано: ${book.collectedAmount}</BookCollectedAmount>
+            <BookExpectedAmount>Ожидается собрать: ${book.expectedAmount}</BookExpectedAmount>
+            <BookCurrentRaiting>Рейтинг: {currentRaiting} {popularBadge}</BookCurrentRaiting>
+            <SubscribeModal isSubscribed = {this.state.isSubscribed}
+                            onSuccess = {this.toggleSubscription}/>
+          </BookInfo>
+          <BookRecommendations>
+            <RecommendationList recommendations={book.recommendations}/>
+          </BookRecommendations>
+        </BookRow>
+        <AuthorsRow><Authors authors={book.authors}/></AuthorsRow>
+      </BookContainer>
     )
   }
 }
 
 export default withLoading(Book);
 
+const BookContainer = ({ children }) => (
+  <div style={styles.container}>{children}</div>
+);
+const BookRow = ({ children }) => (
+  <div style={styles.row}>{children}</div>
+);
+const BookCover = ({ cover }) => (
+  <div style={styles.half}>
+    <a href={cover}>
+      <img src={cover} style={styles.picture}/>
+    </a>
+  </div>
+);
+const BookInfo = ({ children }) => (
+  <div style={styles.half}>{children}</div>
+);
+const BookTitle = ({ children }) => (
+  <h2 style={styles.title}>{children}</h2>
+);
+const BookPageCount = ({ children }) => (
+  <div style={styles.pageCount}>{children}</div>
+);
+const BookShortDescription = ({ children }) => (
+  <div style={styles.shortDescription}>{children}</div>
+);
+const BookLanguage = ({ children }) => (
+  <div style={styles.language}>{children}</div>
+);
+const BookProgress = ({ children }) => (
+  <div style={styles.progress}>{children}</div>
+);
+const BookMinimumPrice = ({ children }) => (
+  <div>{children}</div>
+);
+const BookDesiredPrice = ({ children }) => (
+  <div>{children}</div>
+);
+const BookCollectedAmount = ({ children }) => (
+  <div>{children}</div>
+);
+const BookExpectedAmount = ({ children }) => (
+  <div>{children}</div>
+);
+const BookCurrentRaiting = ({ children }) => (
+  <div>{children}</div>
+);
+const BookRecommendations = ({ children }) => (
+  <div style={styles.recommendations}>{children}</div>
+);
+const AuthorsRow = ({ children }) => (
+  <>{children}</>
+);
 const styles = {
   container: {
     display: 'flex',
