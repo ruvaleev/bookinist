@@ -5,6 +5,8 @@ import Authors from '../Authors/index';
 import RecommendationList from './RecommendationList';
 import withLoading from '../HOC/withLoading';
 
+import './index.css';
+
 class Book extends React.Component {
   constructor(props) {
     super(props);
@@ -68,35 +70,35 @@ class Book extends React.Component {
 export default withLoading(Book);
 
 const BookContainer = ({ children }) => (
-  <div style={styles.container}>{children}</div>
+  <div className='container'>{children}</div>
 );
 const BookRow = ({ children }) => (
-  <div style={styles.row}>{children}</div>
+  <div className='row'>{children}</div>
 );
 const BookCover = ({ cover }) => (
-  <div style={styles.half}>
+  <div className='half'>
     <a href={cover}>
-      <img src={cover} style={styles.picture}/>
+      <img src={cover} className='picture'/>
     </a>
   </div>
 );
 const BookInfo = ({ children }) => (
-  <div style={styles.half}>{children}</div>
+  <div className='half'>{children}</div>
 );
 const BookTitle = ({ children }) => (
-  <h2 style={styles.title}>{children}</h2>
+  <h2 className='title'>{children}</h2>
 );
 const BookPageCount = ({ children }) => (
-  <div style={styles.pageCount}>{children}</div>
+  <div className='pageCount'>{children}</div>
 );
 const BookShortDescription = ({ children }) => (
-  <div style={styles.shortDescription}>{children}</div>
+  <div className='shortDescription'>{children}</div>
 );
 const BookLanguage = ({ children }) => (
-  <div style={styles.language}>{children}</div>
+  <div className='language'>{children}</div>
 );
 const BookProgress = ({ children }) => (
-  <div style={styles.progress}>{children}</div>
+  <div className='progress'>{children}</div>
 );
 const BookMinimumPrice = ({ children }) => (
   <div>{children}</div>
@@ -114,28 +116,8 @@ const BookCurrentRaiting = ({ children }) => (
   <div>{children}</div>
 );
 const BookRecommendations = ({ children }) => (
-  <div style={styles.recommendations}>{children}</div>
+  <div className='recommendations'>{children}</div>
 );
 const AuthorsRow = ({ children }) => (
   <>{children}</>
 );
-const styles = {
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    margin: '3em 0'
-  },
-  picture: {
-    margin: '0 1em'
-  },
-  row: {
-    display: 'flex',
-    flexDirection: 'row',
-    overflowX: 'auto'
-  },
-  recommendations: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginLeft: '3em'
-  }
-}
