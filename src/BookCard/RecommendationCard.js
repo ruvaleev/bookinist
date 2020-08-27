@@ -6,7 +6,7 @@ const RecommendationCard = React.memo(({ recommendation, removeRecommendation })
     <div>{recommendation.title}</div>
     <div>{recommendation.authors[0].name}</div>
     <div><img src='https://a.deviantart.net/avatars/n/1/n1gga-chan.png?1'
-             style={styles.close}
+             className='closeIcon'
              onClick={() => removeRecommendation(recommendation.id)}
              data-testid={'remove_' + recommendation.id}/></div>
   </div>
@@ -22,9 +22,5 @@ const styles = {
   },
   picture: {
     height: '5em',
-  },
-  close: {
-    display: 'flex',
-    width: '50%'
   }
 }

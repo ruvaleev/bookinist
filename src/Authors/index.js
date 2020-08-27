@@ -2,7 +2,8 @@ import React from  'react';
 
 import AuthorList from './AuthorList';
 import Button from '../shared/Button';
-// import arrow from 'url:./images/arrow.png';
+
+import './index.css';
 
 class Authors extends React.Component {
   constructor(props) {
@@ -18,16 +19,8 @@ class Authors extends React.Component {
   render() {
     const authors = this.props.authors
     const isRolledUp = this.state.isRolledUp;
+    const authorsRowClass = (isRolledUp) ? 'rolledUpAuthorsRow' : 'rolledOutAuthorsRow'
     const styles = {
-      authorsRow: (isRolledUp) ? {
-        display: 'flex',
-        flexDirection: 'row',
-        overflowX: 'hidden'
-      } : {
-        display: 'flex',
-        flexDirection: 'row',
-        overflowX: 'auto'
-      },
       arrow: {
         position: 'absolute',
         height: '5em',
@@ -48,7 +41,7 @@ class Authors extends React.Component {
     }
 
     return (
-      <div id='authorsRow' data-testid='authorsRow' style={styles.authorsRow}>
+      <div id='authorsRow' data-testid='authorsRow' className={authorsRowClass}>
         <AuthorList>{authors}</AuthorList>
         {authors.length > 3 &&
           <Button containerOnClick={this.toggleRoll} style={ { container: styles.buttonContainer } }>

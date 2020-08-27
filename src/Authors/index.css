@@ -1,0 +1,27 @@
+@media (--phone) {
+  .rolledUpAuthorsRow {
+    display: flex;
+    flex-direction: column !important;
+    max-height: 200px;
+    overflow-y: hidden;
+  }
+
+  .rolledOutAuthorsRow {
+    display: flex;
+    flex-direction: column !important;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+}
+
+.rolledUpAuthorsRow {
+  display: flex;
+  flex-direction: row;
+  overflow-x: hidden;
+}
+
+.rolledOutAuthorsRow {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+}

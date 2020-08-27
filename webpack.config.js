@@ -1,7 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
+const postcssCustomMedia = require('postcss-custom-media');
 
 module.exports = {
   mode: 'development',
@@ -19,7 +19,17 @@ module.exports = {
   module: {
     rules: [
       { test: /\.js/, use: 'babel-loader' },
-      { test: /\.css$/i, use: [MiniCssExtractPlugin.loader, 'css-loader'] }
+      { test: /\.css$/i, 
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader']
+        // use: [MiniCssExtractPlugin.loader, 'css-loader',
+          // { loader: 'postcss-loader', options: {
+          //   ident: 'postcss',
+          //   plugins: () => [
+          //     postcssCustomMedia(/* pluginOptions */)
+          //   ]
+          // } }
+        // ] 
+      }
     ]
   },
   plugins: [
