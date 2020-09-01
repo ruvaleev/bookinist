@@ -1,0 +1,50 @@
+@media (--phone) {
+  .row {
+    flex-wrap: wrap;
+  }
+
+  .half {
+    flex-basis: 50%;
+    max-width: 50%;
+  }
+
+  .recommendations {
+    flex-direction: row !important;
+    overflow-x: auto;
+  }
+
+  .picture {
+    max-width: calc(100% - 2em);
+  }
+
+  .closeIcon {
+    width: 1em !important;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 3em 0;
+}
+
+.picture {
+  margin: 0 1em;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+}
+
+.recommendations {
+  display: flex;
+  flex-direction: column;
+  margin-left: 3em;
+}
+
+.closeIcon {
+  display: flex;
+  width: 50%;
+}

@@ -5,6 +5,8 @@ import Authors from '../Authors/index';
 import RecommendationList from './RecommendationList';
 import withLoading from '../HOC/withLoading';
 
+import './index.css';
+
 class Book extends React.Component {
   constructor(props) {
     super(props);
@@ -38,58 +40,50 @@ class Book extends React.Component {
       book == null
       ? null
       :
-        <div style={styles.container}>
-          <div style={styles.row}>
-            <div style={styles.half}>
-              <a href={book.cover}>
-                <img src={book.cover} style={styles.picture}/>
-              </a>
-            </div>
-            <div style={styles.half}>
-              <h2 style={styles.title}>{book.title}</h2>
-              <div style={styles.pageCount}>Кол-во страниц: {book.pageCount}</div>
-              <div style={styles.shortDescription}>{book.shortDescription}</div>
-              <div style={styles.language}>Язык: {book.language}</div>
-              <div style={styles.progress}>Прогресс: {book.progress}%</div>
-              <div>Минимальная цена подписки: ${book.minimumPrice}</div>
-              <div>Желаемая цена подписки: ${book.desiredPrice}</div>
-              <div>Уже собрано: ${book.collectedAmount}</div>
-              <div>Ожидается собрать: ${book.expectedAmount}</div>
-              <div>Рейтинг: {currentRaiting} {popularBadge}</div>
-              <SubscribeModal isSubscribed = {this.state.isSubscribed}
-                              onSuccess = {this.toggleSubscription}/>
-            </div>
-            <div style={styles.recommendations}>
-              <RecommendationList recommendations={book.recommendations}/>
-            </div>
-          </div>
-          <>
-            <Authors authors={book.authors}/>
-          </>
-        </div>
+      <Row className='container'>
+        <Row className='row'>
+          <Cover cover={book.cover}/>
+          <Row className='half'>
+            <Title>{book.title}</Title>
+            <Row className='pageCount'>Кол-во страниц: {book.pageCount}</Row>
+            <Row className='shortDescription'>{book.shortDescription}</Row>
+            <Row className='language'>Язык: {book.language}</Row>
+            <Row className='progress'>Прогресс: {book.progress}%</Row>
+            <Row >Минимальная цена подписки: ${book.minimumPrice}</Row>
+            <Row >Желаемая цена подписки: ${book.desiredPrice}</Row>
+            <Row >Уже собрано: ${book.collectedAmount}</Row>
+            <Row >Ожидается собрать: ${book.expectedAmount}</Row>
+            <Row >Рейтинг: {currentRaiting} {popularBadge}</Row>
+            <SubscribeModal isSubscribed = {this.state.isSubscribed}
+                            onSuccess = {this.toggleSubscription}/>
+          </Row>
+          <Row className='recommendations'>
+            <RecommendationList recommendations={book.recommendations}/>
+          </Row>
+        </Row>
+        <AuthorsRow><Authors authors={book.authors}/></AuthorsRow>
+      </Row>
     )
   }
 }
 
 export default withLoading(Book);
 
-const styles = {
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    margin: '3em 0'
-  },
-  picture: {
-    margin: '0 1em'
-  },
-  row: {
-    display: 'flex',
-    flexDirection: 'row',
-    overflowX: 'auto'
-  },
-  recommendations: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginLeft: '3em'
-  }
-}
+const Cover = ({ cover }) => (
+  <div className='half'>
+    <a href={cover}>
+      <img src={cover} className='picture'/>
+    </a>
+  </div>
+);
+const Title = ({ children }) => (
+  <h2 className='title'>{children}</h2>
+);
+
+const Row = ({ className, children }) => (
+  <div className={className}>{children}</div>
+);
+
+const AuthorsRow = ({ children }) => (
+  <>{children}</>
+);
