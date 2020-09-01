@@ -40,84 +40,50 @@ class Book extends React.Component {
       book == null
       ? null
       :
-      <BookContainer>
-        <BookRow>
-          <BookCover cover={book.cover}/>
-          <BookInfo>
-            <BookTitle>{book.title}</BookTitle>
-            <BookPageCount>Кол-во страниц: {book.pageCount}</BookPageCount>
-            <BookShortDescription>{book.shortDescription}</BookShortDescription>
-            <BookLanguage>Язык: {book.language}</BookLanguage>
-            <BookProgress>Прогресс: {book.progress}%</BookProgress>
-            <BookMinimumPrice>Минимальная цена подписки: ${book.minimumPrice}</BookMinimumPrice>
-            <BookDesiredPrice>Желаемая цена подписки: ${book.desiredPrice}</BookDesiredPrice>
-            <BookCollectedAmount>Уже собрано: ${book.collectedAmount}</BookCollectedAmount>
-            <BookExpectedAmount>Ожидается собрать: ${book.expectedAmount}</BookExpectedAmount>
-            <BookCurrentRaiting>Рейтинг: {currentRaiting} {popularBadge}</BookCurrentRaiting>
+      <Row className='container'>
+        <Row className='row'>
+          <Cover cover={book.cover}/>
+          <Row className='half'>
+            <Title>{book.title}</Title>
+            <Row className='pageCount'>Кол-во страниц: {book.pageCount}</Row>
+            <Row className='shortDescription'>{book.shortDescription}</Row>
+            <Row className='language'>Язык: {book.language}</Row>
+            <Row className='progress'>Прогресс: {book.progress}%</Row>
+            <Row >Минимальная цена подписки: ${book.minimumPrice}</Row>
+            <Row >Желаемая цена подписки: ${book.desiredPrice}</Row>
+            <Row >Уже собрано: ${book.collectedAmount}</Row>
+            <Row >Ожидается собрать: ${book.expectedAmount}</Row>
+            <Row >Рейтинг: {currentRaiting} {popularBadge}</Row>
             <SubscribeModal isSubscribed = {this.state.isSubscribed}
                             onSuccess = {this.toggleSubscription}/>
-          </BookInfo>
-          <BookRecommendations>
+          </Row>
+          <Row className='recommendations'>
             <RecommendationList recommendations={book.recommendations}/>
-          </BookRecommendations>
-        </BookRow>
+          </Row>
+        </Row>
         <AuthorsRow><Authors authors={book.authors}/></AuthorsRow>
-      </BookContainer>
+      </Row>
     )
   }
 }
 
 export default withLoading(Book);
 
-const BookContainer = ({ children }) => (
-  <div className='container'>{children}</div>
-);
-const BookRow = ({ children }) => (
-  <div className='row'>{children}</div>
-);
-const BookCover = ({ cover }) => (
+const Cover = ({ cover }) => (
   <div className='half'>
     <a href={cover}>
       <img src={cover} className='picture'/>
     </a>
   </div>
 );
-const BookInfo = ({ children }) => (
-  <div className='half'>{children}</div>
-);
-const BookTitle = ({ children }) => (
+const Title = ({ children }) => (
   <h2 className='title'>{children}</h2>
 );
-const BookPageCount = ({ children }) => (
-  <div className='pageCount'>{children}</div>
+
+const Row = ({ className, children }) => (
+  <div className={className}>{children}</div>
 );
-const BookShortDescription = ({ children }) => (
-  <div className='shortDescription'>{children}</div>
-);
-const BookLanguage = ({ children }) => (
-  <div className='language'>{children}</div>
-);
-const BookProgress = ({ children }) => (
-  <div className='progress'>{children}</div>
-);
-const BookMinimumPrice = ({ children }) => (
-  <div>{children}</div>
-);
-const BookDesiredPrice = ({ children }) => (
-  <div>{children}</div>
-);
-const BookCollectedAmount = ({ children }) => (
-  <div>{children}</div>
-);
-const BookExpectedAmount = ({ children }) => (
-  <div>{children}</div>
-);
-const BookCurrentRaiting = ({ children }) => (
-  <div>{children}</div>
-);
-const BookRecommendations = ({ children }) => (
-  <div className='recommendations'>{children}</div>
-);
+
 const AuthorsRow = ({ children }) => (
   <>{children}</>
 );
