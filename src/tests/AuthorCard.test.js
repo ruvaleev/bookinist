@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
-import AuthorCard from '../Authors/AuthorCard';
+import AuthorCard from '../components/shared/Authors/AuthorCard';
 
 const author = {
   'name': 'Михаил Шолохов',

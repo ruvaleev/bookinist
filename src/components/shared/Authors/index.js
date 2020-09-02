@@ -1,7 +1,7 @@
 import React from  'react';
 
 import AuthorList from './AuthorList';
-import Button from '../shared/Button';
+import Button from '../Button';
 
 import './index.css';
 

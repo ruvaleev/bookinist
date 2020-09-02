@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Button from '../shared/Button';
-import ModalWindow from '../shared/ModalWindow';
+import Button from '../Button';
+import ModalWindow from '../ModalWindow';
 
 class SubscribeModal extends React.Component {
   constructor(props) {

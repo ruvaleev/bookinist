@@ -3,7 +3,7 @@ import React from 'react';
 import SubscribeModal from './SubscribeModal';
 import Authors from '../Authors/index';
 import RecommendationList from './RecommendationList';
-import withLoading from '../HOC/withLoading';
+import withLoading from '../../HOC/withLoading';
 
 import './index.css';
 

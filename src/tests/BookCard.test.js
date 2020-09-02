@@ -2,8 +2,8 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
-import BookCard from '../BookCard/index';
-import recommendations from '../BookCard/books.json';
+import BookCard from '../components/shared/BookCard/index';
+import recommendations from '../components/shared/BookCard/books.json';
 
 const firstAuthor = {
   'name': 'Михаил Шолохов',

@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
-import RecommendationList from '../BookCard/RecommendationList';
+import RecommendationList from '../components/shared/BookCard/RecommendationList';
 
 const recommendations = [
   { 
