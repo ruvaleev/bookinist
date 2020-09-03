@@ -1,19 +1,23 @@
 import React from 'react';
 
-import Book from '../../shared/BookCard/index';
+import { Helmet } from 'react-helmet';
 import Layout from '../../shared/Layout';
 import useFetchBook from '../../hooks/useFetchBook';
+import BookList from './BookList';
 
-const FetchedBook = (bookId) => {
-  const fetchedBook = useFetchBook('reckmfqNyptO7JXGt');
+const FetchedList = () => {
+  const bookList = useFetchBook();
   return (
-    <Book isLoading={!fetchedBook} book={fetchedBook}/>
+    <BookList isLoading={!bookList} bookList={bookList} />
   )
-} 
+}
 
 const Main = () => (
   <Layout>
-    <div style={styles.book}><FetchedBook bookId='reckmfqNyptO7JXGt'/></div>
+    <Helmet>
+      <title>Bookinist</title>
+    </Helmet>
+    <div style={styles.book}><FetchedList/></div>
   </Layout>
 )
 

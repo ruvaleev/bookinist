@@ -1,12 +1,13 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
 import UserInfo from './UserInfo';
 
 class Header extends React.Component {
   render() {
     return (
       <header style={styles.header}>
-        {this.props.title}
+        <Link to={'/'}>{this.props.title}</Link>
         <UserInfo/>
       </header>
     )

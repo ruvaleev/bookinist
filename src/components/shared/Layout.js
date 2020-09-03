@@ -7,7 +7,7 @@ class Layout extends React.Component {
     return (
       <>
         <Header title='Bookinist'/>
-        <main>{this.props.children}</main>
+        <main style={styles.main}>{this.props.children}</main>
         <footer style={styles.footer}>Bookinist&copy; {new Date().getFullYear()}</footer>
       </>
     )
@@ -42,5 +42,8 @@ const styles = {
     fonfontFamily: 'Arial',
     color: 'white',
     fontSize: '0.7em'
+  },
+  main: {
+    marginTop: '3em'
   }
 }

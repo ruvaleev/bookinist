@@ -1,14 +1,23 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import FeedbackForm from './components/shared/FeedbackForm';
 import AuthContext from './AuthContext';
 import Main from './components/pages/Main/index';
+import BookPage from './components/pages/Book/index';
+import NotFound from './components/pages/NotFound/index';
 
 const App = (props) => (
-  <AuthContext.Provider value={props.currentUser || defaultUser}>
-    <Main/>
-    <FeedbackForm/>
-  </AuthContext.Provider>
+  <Router>
+    <AuthContext.Provider value={props.currentUser || defaultUser}>
+      <Switch>
+        <Route component={Main} path='/' exact />
+        <Route component={BookPage} path='/book/:id' strict exact />
+        <Route component={NotFound} />
+      </Switch>
+      <FeedbackForm/>
+    </AuthContext.Provider>
+  </Router>
 );
 
 export default App;
