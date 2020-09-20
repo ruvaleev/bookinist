@@ -12,15 +12,23 @@ const httpClient = axios.create({
   }
 })
 
-function _fetchData(bookId) {
+function _fetchBook(bookId) {
+  console.log('Fetcj book')
   return(
     httpClient.get(`/books/${bookId}`, {})
       .then(result => result.data)
-      .then(_mapFromAirtable)
+      .then(_mapBookFromAirtable)
     );
 }
 
-function _mapFromAirtable(data) {
+function _fetchBookList() {
+  return(
+    httpClient.get('/books/?fields%5B%5D=title', {})
+      .then(result => result.data.records)
+    );
+}
+
+function _mapBookFromAirtable(data) {
   return {
     'id': data.id,
     'title': data.fields.title,
@@ -61,15 +69,20 @@ function _mapRecommendations(fields) {
 }
 
 const useFetchBook = (bookId) => {
-  const [record, setRecord] = useState(null);
+  const [data, setRecord] = useState(null);
 
   useEffect(() => {
-    _fetchData(bookId).then(record => {
-      setRecord(record);
-    });
+    if (bookId) {
+      _fetchBook(bookId).then(data => {
+        setRecord(data);
+      });
+    } else {
+      _fetchBookList().then(data => {
+        setRecord(data);
+      }, [bookId]);
+    }
   }, [bookId]);
-
-  return record;
+  return data;
 };
 
 export default useFetchBook;

@@ -1,9 +1,10 @@
 import React from 'react';
 
+import { Helmet } from 'react-helmet';
 import SubscribeModal from './SubscribeModal';
 import Authors from '../Authors/index';
 import RecommendationList from './RecommendationList';
-import withLoading from '../HOC/withLoading';
+import withLoading from '../../HOC/withLoading';
 
 import './index.css';
 
@@ -41,6 +42,9 @@ class Book extends React.Component {
       ? null
       :
       <Row className='container'>
+        <Helmet>
+          <title>{book.title}</title>
+        </Helmet>
         <Row className='row'>
           <Cover cover={book.cover}/>
           <Row className='half'>

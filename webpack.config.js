@@ -11,7 +11,8 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
-    port: 9000
+    port: 9000,
+    historyApiFallback: true
   },
   output: {
     filename: '[name].js'
@@ -21,20 +22,13 @@ module.exports = {
       { test: /\.js/, use: 'babel-loader' },
       { test: /\.css$/i, 
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader']
-        // use: [MiniCssExtractPlugin.loader, 'css-loader',
-          // { loader: 'postcss-loader', options: {
-          //   ident: 'postcss',
-          //   plugins: () => [
-          //     postcssCustomMedia(/* pluginOptions */)
-          //   ]
-          // } }
-        // ] 
       }
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'index.html'
+      template: 'index.html',
+      base: '/'
     }),
     new MiniCssExtractPlugin()
   ]

@@ -1,27 +1,23 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import FeedbackForm from './shared/FeedbackForm';
-import Header from './shared/Header';
+import FeedbackForm from './components/shared/FeedbackForm';
 import AuthContext from './AuthContext';
-import Book from './BookCard/index';
-import useFetchBook from './hooks/useFetchBook';
-
-const FetchedBook = (bookId) => {
-  const fetchedBook = useFetchBook('reckmfqNyptO7JXGt');
-  return (
-    <Book isLoading={!fetchedBook} book={fetchedBook}/>
-  )
-}
+import Main from './components/pages/Main/index';
+import BookPage from './components/pages/Book/index';
+import NotFound from './components/pages/NotFound/index';
 
 const App = (props) => (
-  <AuthContext.Provider value={props.currentUser || defaultUser}>
-    <Header title='Bookinist'/>
-
-    <div style={styles.book}><FetchedBook bookId='reckmfqNyptO7JXGt'/></div>
-
-    <FeedbackForm/>
-    <footer style={styles.footer}>Bookinist&copy; {new Date().getFullYear()}</footer>
-  </AuthContext.Provider>
+  <Router>
+    <AuthContext.Provider value={props.currentUser || defaultUser}>
+      <Switch>
+        <Route component={Main} path='/' exact />
+        <Route component={BookPage} path='/book/:id' strict exact />
+        <Route component={NotFound} />
+      </Switch>
+      <FeedbackForm/>
+    </AuthContext.Provider>
+  </Router>
 );
 
 export default App;
@@ -31,36 +27,4 @@ const defaultUser = {
   firstName: 'Авторизуйтесь',
   lastName: 'пжлста',
   email: ''
-}
-
-const styles = {
-  header: {
-    display: 'flex',
-    justifyContent: 'center',
-    backgroundColor: 'rgb(121, 34, 145)',
-    width: '100vw',
-    position: 'fixed',
-    left: '0',
-    top: '0',
-    height: '3em',
-    alignItems: 'center',
-    fontFamily: 'Arial',
-    fontWeight: 'bold',
-    color: 'white',
-  },
-  footer: {
-    bottom: '0',
-    left: '0',
-    position: 'fixed',
-    display: 'flex',
-    justifyContent: 'center',
-    width: '100vw',
-    backgroundColor: 'rgb(121, 34, 145)',
-    fonfontFamily: 'Arial',
-    color: 'white',
-    fontSize: '0.7em'
-  },
-  book: {
-    marginTop: '4em'
-  }
 }
