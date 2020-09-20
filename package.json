@@ -39,6 +39,7 @@
     "postcss-custom-media": "^7.0.8",
     "postcss-loader": "^3.0.0",
     "react-helmet": "^6.1.0",
+    "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-routes": "^0.2.6",
     "source-map-loader": "^1.0.1",
