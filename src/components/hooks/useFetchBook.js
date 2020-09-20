@@ -1,30 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
-import axios from 'axios';
-
-const API_TOKEN = 'keytD9pwBZ4Dqx4l0'
-
-const httpClient = axios.create({
-  baseURL: 'https://api.airtable.com/v0/appKMrgQ3BnCNerfL',
-  timeout: 4000,
-  headers: {
-    'Authorization': `Bearer ${API_TOKEN}`
-  }
-})
+import useAxios from './useAxios';
 
 function _fetchBook(bookId) {
   console.log('Fetcj book')
   return(
-    httpClient.get(`/books/${bookId}`, {})
+    useAxios.get(`/books/${bookId}`, {})
       .then(result => result.data)
       .then(_mapBookFromAirtable)
-    );
-}
-
-function _fetchBookList() {
-  return(
-    httpClient.get('/books/?fields%5B%5D=title', {})
-      .then(result => result.data.records)
     );
 }
 
@@ -72,15 +55,9 @@ const useFetchBook = (bookId) => {
   const [data, setRecord] = useState(null);
 
   useEffect(() => {
-    if (bookId) {
-      _fetchBook(bookId).then(data => {
-        setRecord(data);
-      });
-    } else {
-      _fetchBookList().then(data => {
-        setRecord(data);
-      }, [bookId]);
-    }
+    _fetchBook(bookId).then(data => {
+      setRecord(data);
+    });
   }, [bookId]);
   return data;
 };

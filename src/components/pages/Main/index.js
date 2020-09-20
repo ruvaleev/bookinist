@@ -2,11 +2,11 @@ import React from 'react';
 
 import { Helmet } from 'react-helmet';
 import Layout from '../../shared/Layout';
-import useFetchBook from '../../hooks/useFetchBook';
+import useFetchBookList from '../../hooks/useFetchBookList';
 import BookList from './BookList';
 
 const FetchedList = () => {
-  const bookList = useFetchBook();
+  const bookList = useFetchBookList();
   return (
     <BookList isLoading={!bookList} bookList={bookList} />
   )
