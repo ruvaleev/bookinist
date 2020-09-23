@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 import withLoading from '../../HOC/withLoading';
-import bookPath from 'helpers/routes';
+import { bookPath } from 'helpers/routes';
 
 const BookList = ({bookList}) => (
   bookList

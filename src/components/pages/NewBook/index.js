@@ -6,38 +6,45 @@ import cx from 'classnames';
 import Layout from 'components/shared/Layout';
 import useFetchAuthors from 'components/hooks/useFetchAuthors';
 import useFetchBookList from 'components/hooks/useFetchBookList';
-import { createBook } from 'components/hooks/useAxios';
+import { createBook, uploadFile } from 'components/hooks/useHttpClient';
 import { useHistory } from 'react-router-dom';
 import { bookPath } from 'helpers/routes';
 
 const NewBook = () => {
-  const { errors, register, handleSubmit } = useForm();
+  const { errors, register, handleSubmit, isSubmitting } = useForm();
 
   const history = useHistory();
 
-  const onSubmit = (data) => {
-    createBook({
+  const onSubmit = async ({ cover, ...data }) => {
+    const formData = new FormData();
+    formData.append('fileUpload', cover[0]);
+    const uploadResult = await uploadFile(formData);
+
+    const res = await createBook({
       ...data,
+      cover: [
+        { url: uploadResult.url }
+      ],
       pageCount: parseInt(data.pageCount),
       progress: parseInt(data.progress),
       minimumPrice: parseInt(data.minimumPrice),
       desiredPrice: parseInt(data.desiredPrice),
       collectedAmount: parseInt(data.collectedAmount),
       expectedAmount: parseInt(data.expectedAmount)
-    }).then((res) => {
-      console.log(res);
-      const bookId = res.records[0].id;
-      const redirectURI = bookPath(bookId);
-      history.push(redirectURI);
     })
+
+    const newBook = res.records[0];
+    const redirectURI = bookPath(newBook.id);
+
+    history.push(redirectURI);
   };
   const authors = useFetchAuthors();
   const recommendations = useFetchBookList();
 
   return (
     <Layout>
-      <h1 className='text-3xl font-bold'>New Book</h1>
-      <form onSubmit={handleSubmit(onSubmit)} className='mt-5'>
+      <h1>New Book</h1>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Field name='title' errors={errors} label='Title' register={register({ required: 'Required' })}/>
         <Field name='pageCount' type='number' errors={errors} label='Кол-во страниц' register={register({ required: 'Required' })}/>
         <Field name='shortDescription' errors={errors} label='Краткое описание' register={register({ required: 'Required' })}/>
@@ -57,7 +64,8 @@ const NewBook = () => {
             <option key={recommendation.id} value={recommendation.id}>{recommendation.fields.title}</option>
           ))}
         </Select>
-        <button className='mt-3 bg-gray-700 px-3 py-2 text-white'>Add book</button>
+        <Field name='cover' type='file' label='Обложка' errors={errors} register={register({ required: 'Required' })}/>
+        <button disabled={isSubmitting}>Add book</button>
       </form>
     </Layout>
   );
@@ -67,7 +75,7 @@ export default NewBook;
 
 const Select = ({ register, label, list, errors, children, ...inputProps }) => (
   <div>
-    <label className='select' htmlFor={inputProps.name}>{label}</label>
+    <label htmlFor={inputProps.name}>{label}</label>
     {
       children &&
       <select ref={register} {...inputProps}>
@@ -78,13 +86,13 @@ const Select = ({ register, label, list, errors, children, ...inputProps }) => (
   </div>
 )
 
-const Field = ({ register, label, className, errors, ...inputProps }) => {
+const Field = ({ register, label, errors, ...inputProps }) => {
   const Component = 'input';
 
   return (
     <div>
-      <label className='block' htmlFor={inputProps.name}>{label}</label>
-      <Component className={cx('border border-gray-500 rounded px-2 py-3 w-full', className)} ref={register} {...inputProps}/>
+      <label htmlFor={inputProps.name}>{label}</label>
+      <Component ref={register} {...inputProps}/>
       {errors && errors[inputProps.name] && <span>{errors[inputProps.name].message}</span>}
     </div>
   )

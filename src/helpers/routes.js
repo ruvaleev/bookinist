@@ -9,3 +9,7 @@ export function bookPath(bookId) {
 export function rootPath() {
   return '/'
 }
+
+export function newBookPath() {
+  return '/book/new'
+}

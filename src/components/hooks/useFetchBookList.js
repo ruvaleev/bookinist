@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
-import useAxios from './useAxios';
+import useAirTable from './useHttpClient';
 
 function _fetchBookList() {
   return(
-    useAxios.get('/books/?fields%5B%5D=title', {})
+    useAirTable.get('/books/?fields%5B%5D=title', {})
       .then(result => result.data.records)
     );
 }
