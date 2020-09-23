@@ -6,12 +6,14 @@ import AuthContext from './AuthContext';
 import Main from './components/pages/Main/index';
 import BookPage from './components/pages/Book/index';
 import NotFound from './components/pages/NotFound/index';
+import NewBook from './components/pages/NewBook';
 
 const App = (props) => (
   <Router>
     <AuthContext.Provider value={props.currentUser || defaultUser}>
       <Switch>
         <Route component={Main} path='/' exact />
+        <Route component={NewBook} path='/book/new' strict exact />
         <Route component={BookPage} path='/book/:id' strict exact />
         <Route component={NotFound} />
       </Switch>

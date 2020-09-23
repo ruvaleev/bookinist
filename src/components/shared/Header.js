@@ -2,12 +2,13 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 import UserInfo from './UserInfo';
+import { rootPath } from 'helpers/routes';
 
 class Header extends React.Component {
   render() {
     return (
       <header style={styles.header}>
-        <Link to={'/'}>{this.props.title}</Link>
+        <Link to={rootPath}>{this.props.title}</Link>
         <UserInfo/>
       </header>
     )

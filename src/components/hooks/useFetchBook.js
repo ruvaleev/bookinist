@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import useAxios from './useAxios';
 
 function _fetchBook(bookId) {
-  console.log('Fetcj book')
   return(
     useAxios.get(`/books/${bookId}`, {})
       .then(result => result.data)

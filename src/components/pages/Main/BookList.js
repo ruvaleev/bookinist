@@ -2,6 +2,7 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 import withLoading from '../../HOC/withLoading';
+import bookPath from 'helpers/routes';
 
 const BookList = ({bookList}) => (
   bookList
@@ -13,7 +14,7 @@ const BookList = ({bookList}) => (
 
 const LinkToBook = ({bookId, title}) => (
   <div>
-    <Link to={`/book/${bookId}`}>{title}</Link>
+    <Link to={bookPath(bookId)}>{title}</Link>
   </div>
 );
 
