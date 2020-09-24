@@ -2,7 +2,7 @@ import React from 'react';
 
 export function bookPath(bookId) {
   return (
-    `/book/${bookId}`
+    `/book/${bookId || ':id'}`
   )
 }
 

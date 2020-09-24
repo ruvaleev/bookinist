@@ -8,7 +8,7 @@ const NotFound = () => {
   return (
     <Layout>
       'Wrong turn, kid...'
-      <Link to={rootPath}>Get back</Link>
+      <Link to={rootPath()}>Get back</Link>
     </Layout>
   )
 } 

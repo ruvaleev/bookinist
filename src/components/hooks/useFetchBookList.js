@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
-import useAirTable from './useHttpClient';
+import airTableClient from 'components/shared/httpClient';
 
 function _fetchBookList() {
   return(
-    useAirTable.get('/books/?fields%5B%5D=title', {})
+    airTableClient.get('/books/?fields%5B%5D=title', {})
       .then(result => result.data.records)
     );
 }

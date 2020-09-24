@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
-import useAirTable from './useHttpClient';
+import airTableClient from 'components/shared/httpClient';
 
 function _fetchAuthorsList() {
   return(
-    useAirTable.get('/authors?maxRecords=10&view=Grid%20view', {})
+    airTableClient.get('/authors?maxRecords=10&view=Grid%20view', {})
       .then(result => result.data.records)
       .then(_mapAuthorsFromAirtable)
     );

@@ -8,7 +8,7 @@ class Header extends React.Component {
   render() {
     return (
       <header style={styles.header}>
-        <Link to={rootPath}>{this.props.title}</Link>
+        <Link to={rootPath()}>{this.props.title}</Link>
         <UserInfo/>
       </header>
     )

@@ -6,7 +6,7 @@ import cx from 'classnames';
 import Layout from 'components/shared/Layout';
 import useFetchAuthors from 'components/hooks/useFetchAuthors';
 import useFetchBookList from 'components/hooks/useFetchBookList';
-import { createBook, uploadFile } from 'components/hooks/useHttpClient';
+import { createBook, uploadFile } from 'components/shared/httpClient';
 import { useHistory } from 'react-router-dom';
 import { bookPath } from 'helpers/routes';
 
