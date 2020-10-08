@@ -17,6 +17,9 @@ module.exports = {
   output: {
     filename: '[name].js'
   },
+  resolve: {
+    modules: [path.resolve(__dirname, 'src'), 'node_modules']
+  },
   module: {
     rules: [
       { test: /\.js/, use: 'babel-loader' },
