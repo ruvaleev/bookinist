@@ -27,7 +27,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new BundleAnalyzerPlugin(),
+    // new BundleAnalyzerPlugin(),
     new HtmlWebpackPlugin({
       template: 'index.html',
       base: '/'
