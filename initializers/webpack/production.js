@@ -1,24 +1,22 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const postcssCustomMedia = require('postcss-custom-media');
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const path = require('path');
+
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: {
     bundle: './src/index.js'
   },
-  devServer: {
-    contentBase: path.join(__dirname, 'dist'),
-    compress: true,
-    port: 9000,
-    historyApiFallback: true
-  },
   output: {
-    filename: '[name].js'
+    filename: '[name].[chunkhash].js',
+    path: path.resolve(process.cwd(), 'dist/assets')
   },
   resolve: {
-    modules: [path.resolve(__dirname, 'src'), 'node_modules']
+    modules: [path.resolve(process.cwd(), 'src'), 'node_modules']
   },
   module: {
     rules: [
@@ -29,10 +27,14 @@ module.exports = {
     ]
   },
   plugins: [
+    // new BundleAnalyzerPlugin(),
     new HtmlWebpackPlugin({
       template: 'index.html',
       base: '/'
     }),
-    new MiniCssExtractPlugin()
+    new MiniCssExtractPlugin({
+      filename: '[name].[chunkhash].css'
+    }),
+    new WebpackManifestPlugin()
   ]
 };

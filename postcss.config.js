@@ -5,10 +5,8 @@ module.exports = {
       importFrom: {
         customMedia: {
           '--phone': '(max-width: 500px)'
-        }//,
-      //   customMedia: { '--small-viewport': '(max-width: 500px)' }
-      // },
-      // exportTo: 'src/BookCard/index.css'
-    }})
+        }
+    }}),
+    require('cssnano')({ preset: 'default' })
   ]
 };
